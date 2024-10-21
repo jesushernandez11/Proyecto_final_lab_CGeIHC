@@ -59,6 +59,38 @@ float movSingingFlowers;
 float movSingingFlowersOffset;
 float rotSingingFlowers;
 float rotSingingFlowersOffset;
+float movChicharos;
+float movChicharosOffset;
+float rotChicharos;
+float rotChicharosOffset;
+float movJam;
+float movJamOffset;
+float rotJam;
+float rotJamOffset;
+float movNemo;
+float movNemoOffset;
+float rotNemo;
+float rotNemoOffset;
+float movAlegria;
+float movAlegriaOffset;
+float rotAlegria;
+float rotAlegriaOffset;
+float movStich;
+float movStichOffset;
+float rotStich;
+float rotStichOffset;
+float movBingBong;
+float movBingBongOffset;
+float rotBingBong;
+float rotBingBongOffset;
+float movCamioneta;
+float movCamionetaOffset;
+float rotCamioneta;
+float rotCamionetaOffset;
+float movMcQueen;
+float movMcQueenOffset;
+float rotMcQueen;
+float rotMcQueenOffset;
 bool avanza;
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -75,6 +107,14 @@ Texture AgaveTexture;
 Model Tablero_M;
 Model Pumpkin_M;
 Model SingingFlowers_M;
+Model Chicharos_M;
+Model Jam_M;
+Model Nemo_M;
+Model Alegria_M;
+Model Stich_M;
+Model Bing_Bong_M;
+Model CamionetaPP_M;
+Model RayoMcQueen_M;
 
 Skybox skybox;
 
@@ -211,6 +251,24 @@ void CreateShaders()
 	shaderList.push_back(*shader1);
 }
 
+void animaPersonaje(double time, float movPersonaje, float rotPersonaje, float movPersonajeOffset, float rotPersonajeOffset, GLfloat deltaTime) {
+	if (time > 2 && time < 4) {
+		if(movPersonaje<4.0f)
+			movPersonaje += movPersonajeOffset * deltaTime;
+	}
+	if (time > 4 && time < 6) {
+		if (rotPersonaje < 360.0f)
+			rotPersonaje += rotPersonajeOffset * deltaTime;
+	}
+	if (time > 6 && time < 8) {
+		if (movPersonaje > -4.0f)
+			movPersonaje -= movPersonajeOffset * deltaTime;
+	}
+	if (time > 8) {
+		glfwSetTime(0);
+		rotPersonaje = 0.0f;
+	}
+}
 
 
 int main()
@@ -240,6 +298,22 @@ int main()
 	Pumpkin_M.LoadModel("Models/pumpkin_cinderella.obj");
 	SingingFlowers_M = Model();
 	SingingFlowers_M.LoadModel("Models/singing_flowers.obj");
+	Chicharos_M = Model();
+	Chicharos_M.LoadModel("Models/chicharos_toy_story.obj");
+	Jam_M = Model();
+	Jam_M.LoadModel("Models/jam.obj");
+	Nemo_M = Model();
+	Nemo_M.LoadModel("Models/nemo.obj");
+	Alegria_M = Model();
+	Alegria_M.LoadModel("Models/alegria.obj");
+	Stich_M = Model();
+	Stich_M.LoadModel("Models/stich.obj");
+	Bing_Bong_M = Model();
+	Bing_Bong_M.LoadModel("Models/bing-bong.obj");
+	CamionetaPP_M = Model();
+	CamionetaPP_M.LoadModel("Models/camiona_pizza_planeta.obj");
+	RayoMcQueen_M = Model();
+	RayoMcQueen_M.LoadModel("Models/mcQueen.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -258,7 +332,7 @@ int main()
 	//luz direccional, sólo 1 y siempre debe de existir
 	mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
 		0.3f, 0.3f,
-		0.0f, 0.0f, 1.0f);
+		0.0f, -1.0f, 0.0f);
 	//contador de luces puntuales
 	unsigned int pointLightCount = 0;
 	//Declaración de primer luz puntual
@@ -309,6 +383,22 @@ int main()
 	movSingingFlowersOffset = 0.05;
 	rotSingingFlowers = 0.0f;
 	rotSingingFlowersOffset = 10.0f;
+	movChicharos = 0.0f;
+	movChicharosOffset = 0.05;
+	rotChicharos = 0.0f;
+	rotChicharosOffset = 10.0f;
+	movJam = 0.0f;
+	movJamOffset = 0.05f;
+	rotJam = 0.0f;
+	rotJamOffset = 10.0f;
+	movNemo = 0.0f;
+	movNemoOffset = 0.05f;
+	rotNemo = 0.0f;
+	rotNemoOffset = 10.0f;
+	movAlegria = 0.0f;
+	movAlegriaOffset = 0.05f;
+	rotAlegria = 0.0f;
+	rotAlegriaOffset = 10.0f;
 	avanza = true;
 	glfwSetTime(0);
 	////Loop mientras no se cierra la ventana
@@ -459,12 +549,89 @@ int main()
 
 		//Singing Flowers
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f, -3.0f + movSingingFlowers, 35.0f));
+		model = glm::translate(model, glm::vec3(-2.5f, -3.0f + movSingingFlowers, 35.0f));
 		model = glm::rotate(model, glm::radians(rotSingingFlowers), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		SingingFlowers_M.RenderModel();
 
+		//Tree hangman
+
+		//Chicharos toy story
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-22.5f, -3.0f+movChicharos, 35.0f));
+		model = glm::rotate(model, glm::radians(rotChicharos), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Chicharos_M.RenderModel();
+
+		//Raton de dumbo
+
+		//Jam
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movJam, 15.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotJam), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Jam_M.RenderModel();
+
+		//Cuervo de dumbo
+
+		//Nemo
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f + movNemo, -4.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotNemo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(7.0f, 7.0f, 7.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Nemo_M.RenderModel();
+
+		//Alegria
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f + movAlegria, -27.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotAlegria), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Alegria_M.RenderModel();
+
+		//Stich
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-42.0f, -4.0f + movStich, -32.0f));
+		model = glm::rotate(model, -135 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotStich), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Stich_M.RenderModel();
+
+		//Bing bong
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-36.0f, -4.0f + movBingBong, -32.0f));
+		model = glm::rotate(model, -270 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotBingBong), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Bing_Bong_M.RenderModel();
+
+		//Circo de dumbo
+
+		//Camioneta pizza planeta
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(18.0f, 0.0f+movCamioneta, -30.0f));
+		model = glm::rotate(model, -270 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCamioneta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		CamionetaPP_M.RenderModel();
+
+		//Rayo McQueen
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, 0.0f, -20.0f));
+		model = glm::rotate(model, glm::radians(rotMcQueen), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		RayoMcQueen_M.RenderModel();
+
+		//Forky
 
 		glUseProgram(0);
 
