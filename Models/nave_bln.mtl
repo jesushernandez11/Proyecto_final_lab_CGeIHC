@@ -1,0 +1,706 @@
+# 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
+# File Created: 22.10.2024 12:36:08
+
+newmtl Raket_mainout1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4922
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainot1whit.jpg
+
+newmtl Raket_mainner2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4922
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainnr2.jpg
+
+newmtl Raket_mainout2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4922
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainot2whit.jpg
+
+newmtl Raket_mainfloor_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.2824 0.2824 0.2824
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainflor.jpg
+
+newmtl Raket_lights_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANlighs.jpg
+
+newmtl Raket_rearpanels_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANrearpanls.jpg
+
+newmtl Raket_mainner1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainnr1.jpg
+
+newmtl Raket_engines1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANengins1.jpg
+
+newmtl Raket_glasshard_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANglsshard.jpg
+
+newmtl Raket_glassoft_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANglssoft.jpg
+
+newmtl Raket_inerwallpanels_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainwllpanls.jpg
+
+newmtl Raket_mainpanelextra_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainpanlextr.jpg
+
+newmtl Raket_mainpanel2R_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainpanl2R.jpg
+
+newmtl Raket_wingsrearacc_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANwingsgatwhit.jpg
+
+newmtl Raket_turretgun_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANturretgnwhit.jpg
+
+newmtl Raket_mainner3_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainnr3.jpg
+
+newmtl Raket_mainpanel3_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainpanl3.jpg
+
+newmtl Raket_module1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmodul1.jpg
+
+newmtl Raket_mainpanel1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainpanl1.jpg
+
+newmtl Raket_seatsoft_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANsatsoft.jpg
+
+newmtl Raket_module3_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmodul3.jpg
+
+newmtl Raket_seathard_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANsathard.jpg
+
+newmtl Raket_module2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmodul2.jpg
+
+newmtl Raket_mainpanel2L_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmainpanl2L.jpg
+
+newmtl Raket_maindesk4panel_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANmaindsk4panl.jpg
+
+newmtl Raket_container_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANcontainrwhit.jpg
+
+newmtl Raket_noseout1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseot1whit.jpg
+
+newmtl Raket_nosefloor_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseflor.jpg
+
+newmtl Raket_noseout2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseot2whit.jpg
+
+newmtl Raket_noseaccessories_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseaccwhit.jpg
+
+newmtl Raket_noseinner2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseinnr2.jpg
+
+newmtl Raket_noseinner1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseinnr1.jpg
+
+newmtl Raket_nosepanel5_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnosepanl5.jpg
+
+newmtl Raket_nosepanel1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnosepanl1.jpg
+
+newmtl Raket_nosepanel2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnosepanl2.jpg
+
+newmtl Raket_nosepanel3_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnosepanl3.jpg
+
+newmtl Raket_noseinner3_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnoseinnr3.jpg
+
+newmtl Raket_nosepanel4_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANnosepanl4.jpg
+
+newmtl Raket_rearout1_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANrearot1whit.jpg
+
+newmtl Raket_rearout2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANrearot2whit.jpg
+
+newmtl Raket_engines2_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANengins2.jpg
+
+newmtl Raket_reargate_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANreargat.jpg
+
+newmtl Raket_subgate_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANsubgat.jpg
+
+newmtl Raket_engflames_1
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4900
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANengflams.jpg
+
+newmtl Raket_ladders_2
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4922
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANladdrs.jpg
+
+newmtl Raket_ladders_3
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.6000 0.6000 0.6000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4922
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd VANladdrs.jpg
+
+newmtl Raket_Preview
+	Kd 0.7999 0.7999 0.7999
+	Ks 0.9000 0.9000 0.9000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.9000
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
