@@ -91,6 +91,26 @@ float movMcQueen;
 float movMcQueenOffset;
 float rotMcQueen;
 float rotMcQueenOffset;
+float movForky;
+float movForkyOffset;
+float rotForky;
+float rotForkyOffset;
+float movNave;
+float movNaveOffset;
+float rotNave;
+float rotNaveOffset;
+float movUpHouse;
+float movUpHouseOffset;
+float rotUpHouse;
+float rotUpHouseOffset;
+float movAnemona;
+float movAnemonaOffset;
+float rotAnemona;
+float rotAnemonaOffset;
+float movCasaMickey;
+float movCasaMickeyOffset;
+float rotCasaMickey;
+float rotCasaMickeyOffset;
 bool avanza;
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -115,6 +135,11 @@ Model Stich_M;
 Model Bing_Bong_M;
 Model CamionetaPP_M;
 Model RayoMcQueen_M;
+Model Forky_M;
+Model Nave_M;
+Model UpHouse_M;
+Model Anemona_M;
+Model CasaMickey_M;
 
 Skybox skybox;
 
@@ -314,6 +339,16 @@ int main()
 	CamionetaPP_M.LoadModel("Models/camiona_pizza_planeta.obj");
 	RayoMcQueen_M = Model();
 	RayoMcQueen_M.LoadModel("Models/mcQueen.obj");
+	Forky_M = Model();
+	Forky_M.LoadModel("Models/forky.obj");
+	Nave_M = Model();
+	Nave_M.LoadModel("Models/nave_bln.obj");
+	UpHouse_M = Model();
+	UpHouse_M.LoadModel("Models/up_house.obj");
+	Anemona_M = Model();
+	Anemona_M.LoadModel("Models/anemona.obj");
+	CasaMickey_M = Model();
+	CasaMickey_M.LoadModel("Models/casa_mickey_mouse.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -616,7 +651,7 @@ int main()
 
 		//Camioneta pizza planeta
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(18.0f, 0.0f+movCamioneta, -30.0f));
+		model = glm::translate(model, glm::vec3(18.0f, -4.0f+movCamioneta, -30.0f));
 		model = glm::rotate(model, -270 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotCamioneta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
@@ -625,14 +660,51 @@ int main()
 
 		//Rayo McQueen
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(24.0f, 0.0f, -20.0f));
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movMcQueen, -20.0f));
 		model = glm::rotate(model, glm::radians(rotMcQueen), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		RayoMcQueen_M.RenderModel();
 
 		//Forky
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movForky, -12.0f));
+		model = glm::rotate(model, glm::radians(rotForky), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Forky_M.RenderModel();
 
+		//Nave BLN
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movNave, -0.5f));
+		model = glm::rotate(model, glm::radians(rotNave), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Nave_M.RenderModel();
+		//Casa del señor Fredriksen
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movUpHouse, 17.0f));
+		model = glm::rotate(model, glm::radians(rotUpHouse), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		UpHouse_M.RenderModel();
+
+		//Anemona de nemo
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f + movAnemona, 23.0f));
+		model = glm::rotate(model, glm::radians(rotAnemona), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.003f, 0.003f, 0.003f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Anemona_M.RenderModel();
+
+		//Casa de Mickey Mouse
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movCasaMickey, 29.0f));
+		model = glm::rotate(model, glm::radians(rotCasaMickey), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5, 0.5, 0.5));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		CasaMickey_M.RenderModel();
 		glUseProgram(0);
 
 		mainWindow.swapBuffers();
