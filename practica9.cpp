@@ -111,6 +111,22 @@ float movCasaMickey;
 float movCasaMickeyOffset;
 float rotCasaMickey;
 float rotCasaMickeyOffset;
+float movPiglet;
+float movPigletOffset;
+float rotPiglet;
+float rotPigletOffset;
+float movTigger;
+float movTiggerOffset;
+float rotTigger;
+float rotTiggerOffset;
+float movFrancesco;
+float movFrancescoOffset;
+float rotFrancesco;
+float rotFrancescoOffset;
+float movTree;
+float movTreeOffset;
+float rotTree;
+float rotTreeOffset;
 bool avanza;
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -120,6 +136,7 @@ std::vector<Shader> shaderList;
 Camera camera_follow=Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -60.0f, 0.0f, 0.3f, 0.5f);
 Camera* camera_selected = &camera_follow;
 Camera cameraXY = Camera(glm::vec3(0.0f, 50.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.0f, -90.0f, 5.0f, 0.3f);
+Camera cameraFixed = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), 0.0f, -45.0f, 5.0f, 0.3f);//Definir posicion correcta
 
 Texture brickTexture;
 Texture dirtTexture;
@@ -143,6 +160,11 @@ Model Nave_M;
 Model UpHouse_M;
 Model Anemona_M;
 Model CasaMickey_M;
+Model Piglet_M;
+Model Tigger_M;
+Model HangmanTree_M;
+Model Francesco_M;
+
 
 Skybox skybox;
 
@@ -356,6 +378,14 @@ int main()
 	Anemona_M.LoadModel("Models/anemona.obj");
 	CasaMickey_M = Model();
 	CasaMickey_M.LoadModel("Models/casa_mickey_mouse.obj");
+	Piglet_M = Model();
+	Piglet_M.LoadModel("Models/piglet.obj");
+	Tigger_M = Model();
+	Tigger_M.LoadModel("Models/tigger.obj");
+	HangmanTree_M = Model();
+	HangmanTree_M.LoadModel("Models/hangman_tree.obj");
+	Francesco_M = Model();
+	Francesco_M.LoadModel("Models/francesco_bernoulli.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -582,6 +612,23 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Tablero_M.RenderModel();
 
+		//Piglet
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(20.0f, -4.0f+movPiglet, 35.0f));
+		model = glm::rotate(model, glm::radians(rotPiglet), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Piglet_M.RenderModel();
+
+		//Tigger
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(12.0f, -4.0f+movTigger, 35.0f));
+		model = glm::rotate(model, glm::radians(rotTigger), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Tigger_M.RenderModel();
+
 		//Pumpkin Cinderella
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(5.0f, -3.0f+movPumpkin, 35.0f));
@@ -599,6 +646,15 @@ int main()
 		SingingFlowers_M.RenderModel();
 
 		//Tree hangman
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-8.5f, 0.0f, 35.0f));
+		model = glm::rotate(model, glm::radians(rotTree), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		HangmanTree_M.RenderModel();
+
+		//Tiro al blanco
+
 
 		//Chicharos toy story
 		model = glm::mat4(1.0f);
