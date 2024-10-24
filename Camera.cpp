@@ -16,30 +16,55 @@ Camera::Camera(glm::vec3 startPosition, glm::vec3 startUp, GLfloat startYaw, GLf
 	update();
 }
 
-void Camera::keyControl(bool* keys, GLfloat deltaTime)
+void Camera::keyControl(bool* keys, GLfloat deltaTime, GLboolean cameraSelected)
 {
 	GLfloat velocity = moveSpeed * deltaTime;
 
-	if (keys[GLFW_KEY_W])
-	{
-		position += front * velocity;
+	if (cameraSelected) {
+		if (keys[GLFW_KEY_W])
+		{
+			position += front * velocity;
+		}
+
+		if (keys[GLFW_KEY_S])
+		{
+			position -= front * velocity;
+		}
+
+		if (keys[GLFW_KEY_A])
+		{
+			position -= right * velocity;
+		}
+
+		if (keys[GLFW_KEY_D])
+		{
+			position += right * velocity;
+		}
+	}
+	else {
+		if (keys[GLFW_KEY_W])
+		{
+			position.x +=  velocity;
+		}
+
+		if (keys[GLFW_KEY_S])
+		{
+			position.x -=  velocity;
+		}
+
+		if (keys[GLFW_KEY_A])
+		{
+			position.z -=  velocity;
+		}
+
+		if (keys[GLFW_KEY_D])
+		{
+			position.z +=  velocity;
+		}
 	}
 
-	if (keys[GLFW_KEY_S])
-	{
-		position -= front * velocity;
-	}
-
-	if (keys[GLFW_KEY_A])
-	{
-		position -= right * velocity;
-	}
-
-	if (keys[GLFW_KEY_D])
-	{
-		position += right * velocity;
-	}
 }
+
 
 void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
 {
@@ -61,6 +86,7 @@ void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
 
 	update();
 }
+
 
 glm::mat4 Camera::calculateViewMatrix()
 {

@@ -19,6 +19,7 @@ public:
 	GLboolean getApagaLuz() { return apaga_luz; }
 	GLboolean getcambiaLuces() { return cambiaLuces; }
 	GLboolean getApagaVela() { return apaga_vela; }
+	GLboolean getCambiaCamara() { return cambia_camara; }
 	bool getShouldClose() {
 		return  glfwWindowShouldClose(mainWindow);}
 	bool* getsKeys() { return keys; }
@@ -41,6 +42,7 @@ private:
 	GLboolean apaga_luz;
 	GLboolean cambiaLuces;
 	GLboolean apaga_vela;
+	GLboolean cambia_camara;
 	bool mouseFirstMoved;
 	static void ManejaTeclado(GLFWwindow* window, int key, int code, int action, int mode);
 	static void ManejaMouse(GLFWwindow* window, double xPos, double yPos);

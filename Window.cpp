@@ -17,6 +17,7 @@ Window::Window(GLint windowWidth, GLint windowHeight)
 	mueve_heli = 0.0f;
 	muevecofre = 0.0f;
 	cambiaLuces = true; //Se queda true para que sea predeterminado
+	cambia_camara = true; //Inicialmente tenemos la camara por defecto
 	for (size_t i = 0; i < 1024; i++)
 	{
 		keys[i] = 0;
@@ -129,15 +130,15 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 		theWindow->apaga_luz = true;
 	if (key == GLFW_KEY_K)
 		theWindow->apaga_luz = false;
+	if (key == GLFW_KEY_C)
+		theWindow->cambia_camara = false;//Cambiamos a camara XY
+	if(key==GLFW_KEY_N)
+		theWindow->cambia_camara = true;//Cambiamos a camara por defecto
 	if (key == GLFW_KEY_M) {
 		if (theWindow->muevecofre <= 0.0)
 			theWindow->muevecofre += 5.0f;
 	}
-	if (key == GLFW_KEY_N) {
-		if (theWindow->muevecofre >= -45.0f)
-			theWindow->muevecofre -= 5.0f;
-
-	}
+	
 	
 
 	
