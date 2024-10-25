@@ -127,6 +127,30 @@ float movTree;
 float movTreeOffset;
 float rotTree;
 float rotTreeOffset;
+float movTiroAlBlanco;
+float movTiroAlBlancoOffset;
+float rotTiroAlBlanco;
+float rotTiroAlBlancoOffset;
+float movSlinky;
+float movSlinkyOffset;
+float rotSlinky;
+float rotSlinkyOffset;
+float movPinocchio;
+float movPinocchioOffset;
+float rotPinnochio;
+float rotPinnochioOffset;
+float movMickey;
+float movMickeyOffset;
+float rotMickey;
+float rotMickeyOffset;
+float movWinnie;
+float movWinnieOffset;
+float rotWinnie;
+float rotWinnieOffset;
+float movPrincesaAtta;
+float movPrincesaAttaOffset;
+float rotPrincesaAtta;
+float rotPrincesaAttaOffset;
 bool avanza;
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -163,7 +187,13 @@ Model CasaMickey_M;
 Model Piglet_M;
 Model Tigger_M;
 Model HangmanTree_M;
+Model TiroAlBlanco_M;
+Model Slinky_M;
 Model Francesco_M;
+Model Pinocchio_M;
+Model Mickey_M;
+Model Winnie_M;
+Model PrincesaAtta_M;
 
 
 Skybox skybox;
@@ -386,6 +416,18 @@ int main()
 	HangmanTree_M.LoadModel("Models/hangman_tree.obj");
 	Francesco_M = Model();
 	Francesco_M.LoadModel("Models/francesco_bernoulli.obj");
+	TiroAlBlanco_M = Model();
+	TiroAlBlanco_M.LoadModel("Models/tiro_al_blanco.obj");
+	Slinky_M = Model();
+	Slinky_M.LoadModel("Models/slinky.obj");
+	Pinocchio_M = Model();
+	Pinocchio_M.LoadModel("Models/pinocchio.obj");
+	Mickey_M = Model();
+	Mickey_M.LoadModel("Models/mickey_mouse.obj");
+	Winnie_M = Model();
+	Winnie_M.LoadModel("Models/winnie_pooh.obj");
+	PrincesaAtta_M = Model();
+	PrincesaAtta_M.LoadModel("Models/princesa_bichos.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -647,14 +689,19 @@ int main()
 
 		//Tree hangman
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-8.5f, 0.0f, 35.0f));
+		model = glm::translate(model, glm::vec3(-8.5f,-4.0f+movTree, 35.0f));
 		model = glm::rotate(model, glm::radians(rotTree), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		HangmanTree_M.RenderModel();
 
 		//Tiro al blanco
-
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-15.5f, -4.0f+movTiroAlBlanco, 35.0f));
+		model = glm::rotate(model, glm::radians(rotTiroAlBlanco), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		TiroAlBlanco_M.RenderModel();
 
 		//Chicharos toy story
 		model = glm::mat4(1.0f);
@@ -664,7 +711,47 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Chicharos_M.RenderModel();
 
-		//Raton de dumbo
+		//Slinky
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-29.5f, -4.0f+movSlinky, 35.0f));
+		model = glm::rotate(model, glm::radians(rotSlinky), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Slinky_M.RenderModel();
+
+		//Francesco
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-36.5f, -4.0f+movFrancesco, 35.0f));
+		model = glm::rotate(model, glm::radians(rotFrancesco), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Francesco_M.RenderModel();
+
+		//Pinocchio
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-43.5, -4.0f+movPinocchio, 35.0f));
+		model = glm::rotate(model, -45 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPinnochio), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pinocchio_M.RenderModel();
+
+		//Mickey Mouse
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movMickey, 29.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotMickey), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Mickey_M.RenderModel();
+
+		//Winnie Pooh
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movWinnie, 22.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotWinnie), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Winnie_M.RenderModel();
+		
 
 		//Jam
 		model = glm::mat4(1.0f);
@@ -675,7 +762,17 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Jam_M.RenderModel();
 
-		//Cuervo de dumbo
+		//Princesa Atta
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, 0.0f, 8.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPrincesaAtta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		PrincesaAtta_M.RenderModel();
+
+		//Walle
+		
 
 		//Nemo
 		model = glm::mat4(1.0f);
