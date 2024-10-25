@@ -151,6 +151,23 @@ float movPrincesaAtta;
 float movPrincesaAttaOffset;
 float rotPrincesaAtta;
 float rotPrincesaAttaOffset;
+float movWalle;
+float movWalleOffset;
+float rotWalle;
+float rotWalleOffset;
+float movRalph;
+float movRalphOffset;
+float rotRalph;
+float rotRalphOffset;
+float movTinkerbell;
+float movTinkerbellOffset;
+float rotTinkerbell;
+float rotTinkerbellOffset;
+float movRedCat;
+float movRedCatOffset;
+float rotRedCat;
+float rotRedCatOffset;
+
 bool avanza;
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -194,7 +211,10 @@ Model Pinocchio_M;
 Model Mickey_M;
 Model Winnie_M;
 Model PrincesaAtta_M;
-
+Model Walle_M;
+Model Ralph_M;
+Model Tinkerbell_M;
+Model RedCat_M;
 
 Skybox skybox;
 
@@ -428,6 +448,14 @@ int main()
 	Winnie_M.LoadModel("Models/winnie_pooh.obj");
 	PrincesaAtta_M = Model();
 	PrincesaAtta_M.LoadModel("Models/princesa_bichos.obj");
+	Walle_M = Model();
+	Walle_M.LoadModel("Models/walle.obj");
+	Ralph_M = Model();
+	Ralph_M.LoadModel("Models/ralph.obj");
+	Tinkerbell_M = Model();
+	Tinkerbell_M.LoadModel("Models/tinkerbell.obj");
+	RedCat_M = Model();
+	RedCat_M.LoadModel("Models/red_cat.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -764,7 +792,7 @@ int main()
 
 		//Princesa Atta
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-40.0f, 0.0f, 8.0f));
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movPrincesaAtta, 8.0f));
 		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotPrincesaAtta), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.3, 0.3f, 0.3f));
@@ -772,7 +800,13 @@ int main()
 		PrincesaAtta_M.RenderModel();
 
 		//Walle
-		
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movWalle, 1.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotWalle), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Walle_M.RenderModel();
 
 		//Nemo
 		model = glm::mat4(1.0f);
@@ -783,6 +817,23 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Nemo_M.RenderModel();
 
+		//Ralph
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movRalph, -11.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotRalph), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Ralph_M.RenderModel();
+
+		//Tinkerbell
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-40.0f, -4.0f+movTinkerbell, -18.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotTinkerbell), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Tinkerbell_M.RenderModel();
 		//Alegria
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-40.0f, -4.0f + movAlegria, -27.0f));
@@ -808,7 +859,14 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Bing_Bong_M.RenderModel();
 
-		//Circo de dumbo
+		//Red Cat
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-29.0f, -4.0f+movRedCat, -32.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotRedCat), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		RedCat_M.RenderModel();
 
 		//Camioneta pizza planeta
 		model = glm::mat4(1.0f);
