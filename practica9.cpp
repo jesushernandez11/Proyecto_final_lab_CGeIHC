@@ -167,6 +167,47 @@ float movRedCat;
 float movRedCatOffset;
 float rotRedCat;
 float rotRedCatOffset;
+float movMegara;
+float movMegaraOffset;
+float rotMegara;
+float rotMegaraOffset;
+float movMushu;
+float movMushuOffset;
+float rotMushu;
+float rotMushuOffset;
+float movMrFlash;
+float movMrFlashOffset;
+float rotMrFlash;
+float rotMrFlashOffset;
+float movSimba;
+float movSimbaOffset;
+float rotSimba;
+float rotSimbaOffset;
+float movPocahontas;
+float movPocahontasOffset;
+float rotPocahontas;
+float rotPocahontasOffset;
+float movSully;
+float movSullyOffset;
+float rotSully;
+float rotSullyOffset;
+float movPepita;
+float movPepitaOffset;
+float rotPepita;
+float rotPepitaOffset;
+float movCilindro;
+float movCilindroOffset;
+float rotCilindro;
+float rotCilindroOffset;
+float movFantasia;
+float movFantasiaOffset;
+float rotFantasia;
+float rotFantasiaOffset;
+float movPelota;
+float movPelotaOffset;
+float rotPelota;
+float rotPelotaOffset;
+
 
 bool avanza;
 Window mainWindow;
@@ -215,6 +256,17 @@ Model Walle_M;
 Model Ralph_M;
 Model Tinkerbell_M;
 Model RedCat_M;
+Model Megara_M;
+Model Mushu_M;
+Model MrFlash_M;
+Model Simba_M;
+Model Pocahontas_M;
+Model Sully_M;
+Model Pepita_M;
+Model Cilindro_M;
+Model Fantasia_M;
+Model Pelota_M;
+
 
 Skybox skybox;
 
@@ -456,6 +508,26 @@ int main()
 	Tinkerbell_M.LoadModel("Models/tinkerbell.obj");
 	RedCat_M = Model();
 	RedCat_M.LoadModel("Models/red_cat.obj");
+	Megara_M = Model();
+	Megara_M.LoadModel("Models/megara.obj");
+	Mushu_M = Model();
+	Mushu_M.LoadModel("Models/mushu.obj");
+	MrFlash_M = Model();
+	MrFlash_M.LoadModel("Models/Flash.obj");
+	Simba_M = Model();
+	Simba_M.LoadModel("Models/simba.obj");
+	Pocahontas_M = Model();
+	Pocahontas_M.LoadModel("Models/pocahontas.obj");
+	Sully_M = Model();
+	Sully_M.LoadModel("Models/sully.obj");
+	Pepita_M = Model();
+	Pepita_M.LoadModel("Models/pepita.obj");
+	Cilindro_M = Model();
+	Cilindro_M.LoadModel("Models/cilindro_MI.obj");
+	Fantasia_M = Model();
+	Fantasia_M.LoadModel("Models/fantasia.obj");
+	Pelota_M = Model();
+	Pelota_M.LoadModel("Models/pixar_ball.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -853,7 +925,7 @@ int main()
 
 		//Bing bong
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-36.0f, -4.0f + movBingBong, -32.0f));
+		model = glm::translate(model, glm::vec3(-36.0f, -4.0f + movBingBong, -30.0f));
 		model = glm::rotate(model, -270 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotBingBong), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
@@ -861,12 +933,66 @@ int main()
 
 		//Red Cat
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-29.0f, -4.0f+movRedCat, -32.0f));
+		model = glm::translate(model, glm::vec3(-29.0f, -4.0f+movRedCat, -30.0f));
 		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotRedCat), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		RedCat_M.RenderModel();
+
+		//Megara
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-22.0f, -4.0f+movMegara, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotMegara), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Megara_M.RenderModel();
+
+		//Mushu
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-15.0f, -4.0f+movMushu, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotMushu), glm::vec3(0.0, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Mushu_M.RenderModel();
+
+		//Mr. Flash
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-8.0f, -4.0f+movMrFlash, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotMrFlash), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		MrFlash_M.RenderModel();
+
+		//Simba
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-1.0f, -4.0f+movSimba, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotSimba), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Simba_M.RenderModel();
+
+		//Pocahontas
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(6.0f, -4.0f+movPocahontas, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPocahontas), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pocahontas_M.RenderModel();
+
+		//Sully
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(13.0f, -4.0f+movSully, -30.0f));
+		model = glm::rotate(model, -180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotSully), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Sully_M.RenderModel();
+
 
 		//Camioneta pizza planeta
 		model = glm::mat4(1.0f);
@@ -877,6 +1003,25 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		CamionetaPP_M.RenderModel();
 
+		//Pepita
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movPepita, -32.0f));
+		model = glm::rotate(model, -225 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPepita), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pepita_M.RenderModel();
+
+		//Cilindro Monsters Inc
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movCilindro, -26.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCilindro), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Cilindro_M.RenderModel();
+
+
 		//Rayo McQueen
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movMcQueen, -20.0f));
@@ -884,6 +1029,8 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		RayoMcQueen_M.RenderModel();
+
+		
 
 		//Forky
 		model = glm::mat4(1.0f);
@@ -893,6 +1040,14 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Forky_M.RenderModel();
 
+		//Fantasia Disney
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movFantasia, -5.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotFantasia), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Fantasia_M.RenderModel();
+
 		//Nave BLN
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movNave, -0.5f));
@@ -900,6 +1055,16 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Nave_M.RenderModel();
+
+		//Pelota pixar
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movPelota, 10.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPelota), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pelota_M.RenderModel();
+
 		//Casa del señor Fredriksen
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(24.0f, -4.0f+movUpHouse, 17.0f));
