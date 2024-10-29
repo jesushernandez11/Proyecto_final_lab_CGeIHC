@@ -22,6 +22,7 @@ Adicional.- ,Textura Animada
 #include <glm.hpp>
 #include <gtc\matrix_transform.hpp>
 #include <gtc\type_ptr.hpp>
+
 //para probar el importer
 //#include<assimp/Importer.hpp>
 
@@ -207,9 +208,16 @@ float movPelota;
 float movPelotaOffset;
 float rotPelota;
 float rotPelotaOffset;
+float movDado;
+float rotDado;
+const float GRAVITY = 0.0981f;
+const float BOUNCE_DAMPING = 0.5f;
+const glm::vec3 START_POSITION(0.0f, 5.0f, 0.0f);
+const float FLOOR_Y = 0.0f;
 
-
+bool anima;
 bool avanza;
+
 Window mainWindow;
 std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
@@ -266,6 +274,8 @@ Model Pepita_M;
 Model Cilindro_M;
 Model Fantasia_M;
 Model Pelota_M;
+Model Die4_M;
+Model Die8_M;
 
 
 Skybox skybox;
@@ -403,23 +413,39 @@ void CreateShaders()
 	shaderList.push_back(*shader1);
 }
 
-void animaPersonaje(double time, float movPersonaje, float rotPersonaje, float movPersonajeOffset, float rotPersonajeOffset, GLfloat deltaTime) {
-	if (time > 2 && time < 4) {
-		if(movPersonaje<4.0f)
+//Funcion para la animacion de los personajes
+//Utilizamos el operador & para pasar por referencia cada movimiento, rotacion y casilla del personaje
+//Y deltaTime para el control de la animacion
+void animaPersonaje( float& movPersonaje, float& rotPersonaje, float movPersonajeOffset, float rotPersonajeOffset, bool& casilla, GLfloat deltaTime) {
+	if (casilla) {
+		if (movPersonaje <= 6.0f) {
 			movPersonaje += movPersonajeOffset * deltaTime;
-	}
-	if (time > 4 && time < 6) {
-		if (rotPersonaje < 360.0f)
 			rotPersonaje += rotPersonajeOffset * deltaTime;
+		}
+		else {
+			casilla = !casilla;
+		}
 	}
-	if (time > 6 && time < 8) {
-		if (movPersonaje > -4.0f)
+	else {
+		if (movPersonaje >= -4.0f) {
 			movPersonaje -= movPersonajeOffset * deltaTime;
+			rotPersonaje -= rotPersonajeOffset * deltaTime;
+		}
+		else {
+			casilla = false;
+		}
 	}
-	if (time > 8) {
-		glfwSetTime(0);
-		rotPersonaje = 0.0f;
+}
+
+void animaDados(float& movDado, float& rotDado, GLfloat deltaTime) {
+	if (movDado <= FLOOR_Y) {
+		movDado -= GRAVITY * deltaTime;
 	}
+	else {
+		movDado = 0.0f;
+	}
+	/*movDado *= BOUNCE_DAMPING * deltaTime;*/
+
 }
 
 
@@ -528,6 +554,10 @@ int main()
 	Fantasia_M.LoadModel("Models/fantasia.obj");
 	Pelota_M = Model();
 	Pelota_M.LoadModel("Models/pixar_ball.obj");
+	Die4_M = Model();
+	Die4_M.LoadModel("Models/dado_d4.obj");
+	Die8_M = Model();
+	Die8_M.LoadModel("Models/dado_d8.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -613,7 +643,14 @@ int main()
 	movAlegriaOffset = 0.05f;
 	rotAlegria = 0.0f;
 	rotAlegriaOffset = 10.0f;
+	movPiglet = 0.0f;
+	movPigletOffset = 0.05f;
+	rotPiglet = 0.0f;
+	rotPigletOffset = 10.0f;
 	avanza = true;
+	anima = true;
+	movDado = 0.0f;
+	
 	glfwSetTime(0);
 	////Loop mientras no se cierra la ventana
 	while (!mainWindow.getShouldClose())
@@ -624,29 +661,13 @@ int main()
 		lastTime = now;
 
 		mainWindow.getCambiaCamara() ? camera_selected = &camera_follow : camera_selected = &cameraXY;
+
+		animaPersonaje(movPiglet, rotPiglet, movPigletOffset, rotPigletOffset, anima, deltaTime);
 		
 		//printf("get Time %f\n", glfwGetTime());
 		//if(casillaPumpkin.isSelected())
 		//Dentro de este if va todo eso
-		//if (glfwGetTime() < 4 && glfwGetTime()>2) {
-		//	if (movPumpkin < 4.0f) {
-		//		movPumpkin += movPumpkinOffset * deltaTime;
-		//	}
-		//}
-		//if (glfwGetTime() > 4 && glfwGetTime() < 6) {
-		//	if (rotPumpkin < 360.0)
-		//		rotPumpkin += rotPumpkinOfsset * deltaTime;
-		//}
-		//if (glfwGetTime() > 6 && glfwGetTime() < 8) {
-		//	if (movPumpkin > -4.0f) {
-		//		movPumpkin -= movPumpkinOffset * deltaTime;
-		//	}
-		//}
-		//if (glfwGetTime() > 8) {
-		//	glfwSetTime(0);
-		//	rotPumpkin = 0.0f;
-		//	//casillaPumpkin=false Para "liberar" el tiempo
-		//}
+		
 		//if(casillaSingingFlowers.isSelected())
 		//todo lo demas
 		//if (glfwGetTime() < 4 && glfwGetTime() > 2) {
@@ -747,12 +768,21 @@ int main()
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 
 		meshList[2]->RenderMesh();
+
+		//dados
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f,5.0f+movDado,0.0f));
+		animaDados(movDado, rotDado, deltaTime);
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Die4_M.RenderModel();
 		
 		//Tablero
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -8.5f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Tablero_M.RenderModel();
+
+		
 
 		//Piglet
 		model = glm::mat4(1.0f);
