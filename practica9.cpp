@@ -280,6 +280,11 @@ Model Fantasia_M;
 Model Pelota_M;
 Model Die4_M;
 Model Die8_M;
+Model Dumbo_Cuerpo_M;
+Model Oreja_izq_M;
+Model Oreja_der_M;
+Model Pata_izq_M;
+Model Pata_der_M;
 
 
 Skybox skybox;
@@ -562,6 +567,12 @@ int main()
 	Die4_M.LoadModel("Models/dado_d4.obj");
 	Die8_M = Model();
 	Die8_M.LoadModel("Models/dado_d8.obj");
+	Dumbo_Cuerpo_M = Model();
+	Dumbo_Cuerpo_M.LoadModel("Models/dumbo.obj");
+	Oreja_der_M = Model();
+	Oreja_der_M.LoadModel("Models/oreja_der_dumbo.obj");
+	Oreja_izq_M = Model();
+	Oreja_izq_M.LoadModel("Models/oreja_izq_dumbo.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -816,6 +827,16 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, -8.5f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Tablero_M.RenderModel();
+
+		//Dumbo
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(13.0f, 2.0f, 35.0f));
+		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+		modelaux = model;
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Dumbo_Cuerpo_M.RenderModel();
+
+		//Oreja derecha dumbo
 
 		
 
