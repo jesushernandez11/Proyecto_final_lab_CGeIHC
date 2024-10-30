@@ -210,6 +210,10 @@ float rotPelota;
 float rotPelotaOffset;
 float movDado;
 float rotDado;
+float movDirZ;
+float movDirY;
+float movDirX;
+float movDirZOffset;
 const float GRAVITY = 0.0981f;
 const float BOUNCE_DAMPING = 0.5f;
 const glm::vec3 START_POSITION(0.0f, 5.0f, 0.0f);
@@ -576,7 +580,7 @@ int main()
 	//luz direccional, sólo 1 y siempre debe de existir
 	mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
 		0.3f, 0.3f,
-		0.0f, -1.0f, 0.0f);
+		0.0f, 1.0f, -1.0f);
 	//contador de luces puntuales
 	unsigned int pointLightCount = 0;
 	//Declaración de primer luz puntual
@@ -647,8 +651,13 @@ int main()
 	movPigletOffset = 0.05f;
 	rotPiglet = 0.0f;
 	rotPigletOffset = 10.0f;
+	movDirX = 0.0;
+	movDirY = -1.0f;
+	movDirZ = 1.0f;
+	movDirZOffset = 0.001f;
 	avanza = true;
 	anima = true;
+	bool direc = true;
 	movDado = 0.0f;
 	
 	glfwSetTime(0);
@@ -751,6 +760,32 @@ int main()
 		shaderList[0].SetDirectionalLight(&mainLight);
 		shaderList[0].SetPointLights(pointLights, pointLightCount);
 		shaderList[0].SetSpotLights(spotLights, spotLightCount);
+
+		//printf("Before condition: movDirZ=%.2f\n", movDirZ);
+		
+		if (direc) {
+			if (movDirZ >= -1.0f) {
+				movDirY = -1.0f;
+				movDirZ -= movDirZOffset * deltaTime;
+				printf("Inside condition (after update): movDirZ=%.2f\n", movDirZ);
+				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
+			}
+			else {
+				direc = !direc;
+			}
+		}
+		else {
+			if (movDirZ < 1.0f) {
+				movDirY = 1.0f;
+				movDirZ += movDirZOffset * deltaTime;
+				printf("Inside  second condition (after update): movDirZ=%.2f\n", movDirZ);
+				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
+			}
+			else {
+				direc = !direc;
+			}
+		}
+		
 
 
 
