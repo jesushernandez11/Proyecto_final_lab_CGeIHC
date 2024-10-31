@@ -214,6 +214,13 @@ float movDirZ;
 float movDirY;
 float movDirX;
 float movDirZOffset;
+float orejaT;
+float orejaTOffset;
+float rotPiernaDerecha;
+float rotPiernaDerechaOffset;
+float rotPiernaIzquierda;
+float rotPiernaIzquierdaOffset;
+Sphere sp=Sphere(1.0f,20,20);
 const float GRAVITY = 0.0981f;
 const float BOUNCE_DAMPING = 0.5f;
 const glm::vec3 START_POSITION(0.0f, 5.0f, 0.0f);
@@ -285,6 +292,7 @@ Model Oreja_izq_M;
 Model Oreja_der_M;
 Model Pata_izq_M;
 Model Pata_der_M;
+
 
 
 Skybox skybox;
@@ -470,7 +478,9 @@ int main()
 
 	
 
-
+	
+	sp.init();
+	sp.load();
 
 	brickTexture = Texture("Textures/brick.png");
 	brickTexture.LoadTextureA();
@@ -573,6 +583,10 @@ int main()
 	Oreja_der_M.LoadModel("Models/oreja_der_dumbo.obj");
 	Oreja_izq_M = Model();
 	Oreja_izq_M.LoadModel("Models/oreja_izq_dumbo.obj");
+	Pata_der_M = Model();
+	Pata_der_M.LoadModel("Models/pata_der_dumbo.obj");
+	Pata_izq_M = Model();
+	Pata_izq_M.LoadModel("Models/pata_izq_dumbo.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
@@ -666,6 +680,10 @@ int main()
 	movDirY = -1.0f;
 	movDirZ = 1.0f;
 	movDirZOffset = 0.001f;
+	orejaT = 0.0f;
+	orejaTOffset = 0.01f;
+	rotPiernaDerecha = 0.0f;
+	rotPiernaDerechaOffset = 0.1f;
 	avanza = true;
 	anima = true;
 	bool direc = true;
@@ -683,6 +701,9 @@ int main()
 		mainWindow.getCambiaCamara() ? camera_selected = &camera_follow : camera_selected = &cameraXY;
 
 		animaPersonaje(movPiglet, rotPiglet, movPigletOffset, rotPigletOffset, anima, deltaTime);
+
+		orejaT += orejaTOffset * deltaTime;
+		rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 		
 		//printf("get Time %f\n", glfwGetTime());
 		//if(casillaPumpkin.isSelected())
@@ -778,7 +799,7 @@ int main()
 			if (movDirZ >= -1.0f) {
 				movDirY = -1.0f;
 				movDirZ -= movDirZOffset * deltaTime;
-				printf("Inside condition (after update): movDirZ=%.2f\n", movDirZ);
+				//printf("Inside condition (after update): movDirZ=%.2f\n", movDirZ);
 				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
 			}
 			else {
@@ -789,7 +810,7 @@ int main()
 			if (movDirZ < 1.0f) {
 				movDirY = 1.0f;
 				movDirZ += movDirZOffset * deltaTime;
-				printf("Inside  second condition (after update): movDirZ=%.2f\n", movDirZ);
+				//printf("Inside  second condition (after update): movDirZ=%.2f\n", movDirZ);
 				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
 			}
 			else {
@@ -830,13 +851,48 @@ int main()
 
 		//Dumbo
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(13.0f, 2.0f, 35.0f));
+		model = glm::translate(model, glm::vec3(27.0f, 2.0f, 40.0f));
 		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
 		modelaux = model;
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Dumbo_Cuerpo_M.RenderModel();
 
 		//Oreja derecha dumbo
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.35f, 0.4f, -0.2f));
+		model = glm::rotate(model, 0.5f*sin(orejaT), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-0.2, -0.3, 0.3));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Oreja_der_M.RenderModel();
+
+		//Oreja izquierda Dumbo
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.35f, 0.4f, 0.2f));
+		model = glm::rotate(model, -0.5f*sin(orejaT), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-0.3f, 0.25f, 0.3f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Oreja_izq_M.RenderModel();
+
+		//Pata derecha Dumbo
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.1f, -0.4f, -0.3f));
+		model = glm::rotate(model, 0.5f * sin(rotPiernaDerecha), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(-0.1f, -0.1f, 0.2f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pata_der_M.RenderModel();
+		
+		//Pata izquierda Dumbo
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.1f, -0.4f, 0.3f));
+		model = glm::rotate(model, -0.5f * sin(rotPiernaDerecha), glm::vec3(0.0f, 0.0f, 1.0f));
+		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		model = glm::translate(model, glm::vec3(-0.1f, -0.1f, -0.15f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Pata_izq_M.RenderModel();
+		/*color = glm::vec3(1.0f, 0.45265f, 0.24132);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		sp.render();*/
 
 		
 
