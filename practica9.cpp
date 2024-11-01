@@ -15,6 +15,8 @@ Adicional.- ,Textura Animada
 #include <cmath>
 #include <vector>
 #include <math.h>
+#include <cstdlib>
+#include <ctime>
 
 #include <glew.h>
 #include <glfw3.h>
@@ -209,7 +211,11 @@ float movPelotaOffset;
 float rotPelota;
 float rotPelotaOffset;
 float movDado;
-float rotDado;
+float movDadoOffset;
+float rotDadoXd8;
+float rotDadoYd8;
+float rotDadoZd8;
+float rotDadoOffset;
 float movDirZ;
 float movDirY;
 float movDirX;
@@ -220,6 +226,12 @@ float rotPiernaDerecha;
 float rotPiernaDerechaOffset;
 float rotPiernaIzquierda;
 float rotPiernaIzquierdaOffset;
+bool cicloNoche;
+bool avanzaDumbo;
+float movDumboX;
+float movDumboZ;
+float rotDumbo;
+
 Sphere sp=Sphere(1.0f,20,20);
 const float GRAVITY = 0.0981f;
 const float BOUNCE_DAMPING = 0.5f;
@@ -296,6 +308,7 @@ Model Pata_der_M;
 
 
 Skybox skybox;
+Skybox night;
 
 //materiales
 Material Material_brillante;
@@ -455,12 +468,26 @@ void animaPersonaje( float& movPersonaje, float& rotPersonaje, float movPersonaj
 }
 
 void animaDados(float& movDado, float& rotDado, GLfloat deltaTime) {
-	if (movDado <= FLOOR_Y) {
-		movDado -= GRAVITY * deltaTime;
+	glm::vec3 rotacionesDado8[8]{
+		glm::vec3(0.0f,0.0f,0.0f),
+		glm::vec3(glm::radians(45.0f), 0.0f, 0.0f), // Cara 2 hacia arriba
+		glm::vec3(glm::radians(90.0f), 0.0f, 0.0f), // Cara 3 hacia arriba
+		glm::vec3(glm::radians(135.0f), 0.0f, 0.0f),// Cara 4 hacia arriba
+		glm::vec3(glm::radians(180.0f), 0.0f, 0.0f),// Cara 5 hacia arriba
+		glm::vec3(glm::radians(225.0f), 0.0f, 0.0f),// Cara 6 hacia arriba
+		glm::vec3(glm::radians(270.0f), 0.0f, 0.0f),// Cara 7 hacia arriba
+		glm::vec3(glm::radians(315.0f), 0.0f, 0.0f) // Cara 8 hacia arriba
+	};
+	srand(time(NULL));
+	bool anima=true;
+	int numDado4 = 1 + rand() % 4;
+	int numDado8 = 1 + rand() % 8;
+	if (movDado >= 0.0f) {
+		movDado -= movDadoOffset * deltaTime;
 	}
-	else {
-		movDado = 0.0f;
-	}
+
+	
+	
 	/*movDado *= BOUNCE_DAMPING * deltaTime;*/
 
 }
@@ -488,8 +515,8 @@ int main()
 	dirtTexture.LoadTextureA();
 	plainTexture = Texture("Textures/plain.png");
 	plainTexture.LoadTextureA();
-	pisoTexture = Texture("Textures/piso.tga");
-	pisoTexture.LoadTextureA();
+	pisoTexture = Texture("Textures/piso.jpg");
+	pisoTexture.LoadTexture();
 	AgaveTexture = Texture("Textures/Agave.tga");
 	AgaveTexture.LoadTextureA();
 
@@ -588,15 +615,41 @@ int main()
 	Pata_izq_M = Model();
 	Pata_izq_M.LoadModel("Models/pata_izq_dumbo.obj");
 
+	glm::vec3 rotacionesDado4[4]{
+		glm::vec3(30.0f,0.0f,-90.0f),//Punta con numeros 1 hacia arriba
+		glm::vec3(-120.0f,0.0f,0.0f),//Punta con numeros 2 hacia arriba
+		glm::vec3(30.0f,0.0f,90.0f),//Punta con numeros 3 hacia arriba
+		glm::vec3(0.0f,0.0f,0.0f)//Punta con numeros 4 hacia arriba
+	};
+	glm::vec3 rotacionesDado8[8]{
+		glm::vec3(-35.0f,0.0f,35.0f), //Cara 1 hacia arriba
+		glm::vec3(-45.0f, -45.0f, 180.0f), // Cara 2 hacia arriba
+		glm::vec3(-35.0f, 0.0f, -35.0f), // Cara 3 hacia arriba
+		glm::vec3(-45.0f, 45.0f, 180.0f),// Cara 4 hacia arriba
+		glm::vec3(35.0f, 0.0f, -35.0f),// Cara 5 hacia arriba
+		glm::vec3(45.0f, -45.0f, 180.0f),// Cara 6 hacia arriba
+		glm::vec3(35.0f, 0.0f, 35.0f),// Cara 7 hacia arriba
+		glm::vec3(45.0f, 45.0f, 180.0f) // Cara 8 hacia arriba
+	};
 	std::vector<std::string> skyboxFaces;
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_lf.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_dn.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_up.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_bk.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_ft.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_rt.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_lf.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_dn.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_up.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_bk.tga");
+	skyboxFaces.push_back("Textures/Skybox/miramar_ft.tga");
+
+	std::vector<std::string> skyBoxNight;
+	skyBoxNight.push_back("Textures/Skybox/indigo_rt.jpg");
+	skyBoxNight.push_back("Textures/Skybox/indigo_lf.jpg");
+	skyBoxNight.push_back("Textures/Skybox/indigo_dn.jpg");
+	skyBoxNight.push_back("Textures/Skybox/indigo_up.jpg");
+	skyBoxNight.push_back("Textures/Skybox/indigo_bk.jpg");
+	skyBoxNight.push_back("Textures/Skybox/indigo_ft.jpg");
+
 
 	skybox = Skybox(skyboxFaces);
+	night = Skybox(skyBoxNight);
 
 	Material_brillante = Material(4.0f, 256);
 	Material_opaco = Material(0.3f, 4);
@@ -609,7 +662,7 @@ int main()
 	//contador de luces puntuales
 	unsigned int pointLightCount = 0;
 	//Declaración de primer luz puntual
-	pointLights[0] = PointLight(1.0f, 0.0f, 0.0f,
+	pointLights[0] = PointLight(0.827f, 0.827f, 0.827f, 
 		0.0f, 1.0f,
 		-6.0f, 1.5f, 1.5f,
 		0.3f, 0.2f, 0.1f);
@@ -626,13 +679,13 @@ int main()
 	spotLightCount++;
 
 	//luz fija
-	spotLights[1] = SpotLight(0.0f, 1.0f, 0.0f,
+	/*spotLights[1] = SpotLight(0.0f, 1.0f, 0.0f,
 		1.0f, 2.0f,
 		5.0f, 10.0f, 0.0f,
 		0.0f, -5.0f, 0.0f,
 		1.0f, 0.0f, 0.0f,
 		15.0f);
-	spotLightCount++;
+	spotLightCount++;*/
 	
 	//se crean mas luces puntuales y spotlight 
 
@@ -684,9 +737,16 @@ int main()
 	orejaTOffset = 0.01f;
 	rotPiernaDerecha = 0.0f;
 	rotPiernaDerechaOffset = 0.1f;
+	rotDadoXd8 = 0.0f;
+	rotDadoYd8 = 0.0f;
+	rotDadoZd8 = 0.0f;
 	avanza = true;
 	anima = true;
+	avanzaDumbo = false;
 	bool direc = true;
+	cicloNoche = false;
+	int caraSeld8=0;
+	int caraSeld4 = 0;
 	movDado = 0.0f;
 	
 	glfwSetTime(0);
@@ -766,7 +826,8 @@ int main()
 		// Clear the window
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		skybox.DrawSkybox(camera_selected->calculateViewMatrix(), projection);
+		cicloNoche? night.DrawSkybox(camera_selected->calculateViewMatrix(), projection):
+			skybox.DrawSkybox(camera_selected->calculateViewMatrix(), projection);
 		shaderList[0].UseShader();
 		uniformModel = shaderList[0].GetModelLocation();
 		uniformProjection = shaderList[0].GetProjectionLocation();
@@ -798,6 +859,7 @@ int main()
 		if (direc) {
 			if (movDirZ >= -1.0f) {
 				movDirY = -1.0f;
+				cicloNoche = false;
 				movDirZ -= movDirZOffset * deltaTime;
 				//printf("Inside condition (after update): movDirZ=%.2f\n", movDirZ);
 				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
@@ -809,6 +871,7 @@ int main()
 		else {
 			if (movDirZ < 1.0f) {
 				movDirY = 1.0f;
+				cicloNoche = true;
 				movDirZ += movDirZOffset * deltaTime;
 				//printf("Inside  second condition (after update): movDirZ=%.2f\n", movDirZ);
 				mainLight.setDir(glm::vec3(0.0f, movDirY, movDirZ));
@@ -817,6 +880,10 @@ int main()
 				direc = !direc;
 			}
 		}
+		
+		cicloNoche ? shaderList[0].SetPointLights(pointLights, pointLightCount) :
+			shaderList[0].SetPointLights(pointLights, pointLightCount - 1);
+		
 		
 
 
@@ -836,13 +903,94 @@ int main()
 
 		meshList[2]->RenderMesh();
 
-		//dados
+		if (mainWindow.getTiraDados()) {
+			if (movDado >= 0.0f)
+				movDado -= movDadoOffset * deltaTime;
+			srand(time(NULL));
+			caraSeld8 = rand() % 8 + 1;
+			caraSeld4 = rand() % 4 + 1;
+			printf("Numero de cara: %i\n", caraSeld8);
+			printf("Numero de cara: %i\n", caraSeld4);
+
+			switch (caraSeld4)
+			{
+			case 1:
+
+			default:
+				break;
+			}
+			switch (caraSeld8)
+			{
+			case 1:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 2:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 3:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 4:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 5:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 6:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 7:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			case 8:
+				rotDadoXd8 = rotacionesDado8[caraSeld8 - 1].x;
+				rotDadoYd8 = rotacionesDado8[caraSeld8 - 1].y;
+				rotDadoZd8 = rotacionesDado8[caraSeld8 - 1].z;
+				mainWindow.setTiraDados(false);
+				break;
+			default:
+				break;
+			}
+		}
+
+		////dados
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(0.0f,5.0f+movDado,0.0f));
+		//model = glm::rotate(model, -45*toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		//model = glm::rotate(model, -45*toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, 180*toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		//model = scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		//glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		//Die8_M.RenderModel();
+		
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f,5.0f+movDado,0.0f));
-		animaDados(movDado, rotDado, deltaTime);
+		model = glm::translate(model, glm::vec3(0.0f, 5.0f, 0.0f));
+		model = glm::rotate(model, 30* toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, 0*toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, -90*toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Die4_M.RenderModel();
-		
 		//Tablero
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -8.5f, 0.0f));
@@ -852,6 +1000,7 @@ int main()
 		//Dumbo
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(27.0f, 2.0f, 40.0f));
+		pointLights[0].setPosition(model[3]);
 		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
 		modelaux = model;
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
