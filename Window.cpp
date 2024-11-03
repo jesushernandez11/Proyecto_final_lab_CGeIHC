@@ -18,6 +18,8 @@ Window::Window(GLint windowWidth, GLint windowHeight)
 	muevecofre = 0.0f;
 	cambiaLuces = true; //Se queda true para que sea predeterminado
 	cambia_camara = true; //Inicialmente tenemos la camara por defecto
+	camara_fija = false; //La camara fija estara "apagada" hasta que se teclee la tecla F
+	tiraDados = false; //False hasta que el usuario teclee L, cambia a true
 	for (size_t i = 0; i < 1024; i++)
 	{
 		keys[i] = 0;
@@ -97,6 +99,9 @@ GLfloat Window::getYChange()
 	return theChange;
 }
 
+void Window::setTiraDados(GLboolean tiraDadosF) {
+	tiraDados = tiraDadosF;
+}
 
 
 
@@ -122,8 +127,10 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 		theWindow->mueve_heli -= 1.0f;
 	if (key == GLFW_KEY_J)
 		theWindow->mueve_heli += 1.0f;
-	if (key == GLFW_KEY_L)
-		theWindow->apaga_luz = true;
+	if (key == GLFW_KEY_L && action == GLFW_PRESS)
+		theWindow->tiraDados = true;
+	if(key==GLFW_KEY_K)
+		theWindow->tiraDados = false;
 	if (key == GLFW_KEY_P)
 		theWindow->apaga_luz = false;
 	if (key == GLFW_KEY_O)

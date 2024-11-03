@@ -1,0 +1,182 @@
+﻿  Camera.cpp
+  DirectionalLight.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\DirectionalLight.cpp(18,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\DirectionalLight.cpp(19,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\DirectionalLight.cpp(21,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\DirectionalLight.cpp(22,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+  Light.cpp
+  Material.cpp
+  Mesh_tn.cpp
+  Model.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(16,10): warning C4477: 'printf' : la cadena de formato '%s' requiere un argumento de tipo 'char *', pero el argumento variádico 1 tiene el tipo 'const std::string'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(16,80): warning C4474: "printf": se pasaron demasiados argumentos para la cadena de formato
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(51,7): warning C4804: '<': uso no seguro del tipo 'bool' en la operación
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(51,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(138,14): warning C4477: 'printf' : la cadena de formato '%s' requiere un argumento de tipo 'char *', pero el argumento variádico 1 tiene el tipo 'std::string'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Model.cpp(147,14): warning C4477: 'printf' : la cadena de formato '%s' requiere un argumento de tipo 'char *', pero el argumento variádico 1 tiene el tipo 'std::string'
+  PointLight.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(28,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(29,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(30,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(32,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(33,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(34,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\PointLight.cpp(35,14): warning C4244: 'argumento': conversión de 'GLfloat' a 'GLint'; posible pérdida de datos
+  practica7.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.h(12,36): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.h(13,37): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(210,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(210,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(210,67): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,6): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,15): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,24): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,52): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,61): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(211,69): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(212,66): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(213,67): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,6): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,14): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,23): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,53): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,62): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(214,70): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(215,6): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(215,23): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(215,55): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(215,64): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(216,6): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(216,22): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(216,45): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(216,53): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(216,61): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,19): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(217,57): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(218,59): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,19): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(219,59): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,21): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,42): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(220,59): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,19): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(221,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,19): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(222,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,21): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,42): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(223,59): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,21): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,43): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,51): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(224,60): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,12): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(225,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,12): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,22): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,43): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,51): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(226,60): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,12): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,49): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(227,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,12): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,22): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,44): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,53): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(228,61): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,10): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,20): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(229,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,3): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,11): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,19): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,41): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,50): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(230,58): warning C4305: 'inicializando': truncamiento de 'double' a 'GLfloat'
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(407,15): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\practica7.cpp(409,33): warning C4244: '+=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+  Shader_light.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(207,75): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(207,26): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(206,91): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(206,42): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(220,98): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(220,62): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(220,24): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(219,70): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(219,24): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(218,88): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Shader_light.cpp(218,42): warning C4244: 'argumento': conversión de 'GLuint' a 'GLfloat'; posible pérdida de datos
+  Skybox.cpp
+  Sphere.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Sphere.cpp(39,13): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Sphere.cpp(43,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  SpotLight.cpp
+  Texture.cpp
+  Window.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.h(12,36): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.h(13,37): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(167,22): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(168,22): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(172,28): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(173,40): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(175,21): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(176,21): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+  Generando código
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Practica8\Window.cpp(78): warning C4715: 'Window::Initialise': no todas las rutas de acceso de control devuelven un valor
+  All 1010 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  Practica8.vcxproj -> C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica8\Practica8\Release\Practica8.exe

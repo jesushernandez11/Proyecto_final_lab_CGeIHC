@@ -1,0 +1,6 @@
+﻿  practica7.cpp
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica7\Practica7\Practica7\Window.h(12,36): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica7\Practica7\Practica7\Window.h(13,37): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica7\Practica7\Practica7\practica7.cpp(297,15): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica7\Practica7\Practica7\practica7.cpp(299,33): warning C4244: '+=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+  Practica7.vcxproj -> C:\Users\jesus\OneDrive\Escritorio\LabGráfica\Practica7\Practica7\Debug\Practica7.exe
