@@ -141,10 +141,7 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 		theWindow->cambia_camara = false;//Cambiamos a camara XY
 	if(key==GLFW_KEY_N)
 		theWindow->cambia_camara = true;//Cambiamos a camara por defecto
-	if (key == GLFW_KEY_M) {
-		if (theWindow->muevecofre <= 0.0)
-			theWindow->muevecofre += 5.0f;
-	}
+	
 	
 	
 
