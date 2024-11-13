@@ -354,6 +354,10 @@ Model Rueda_tras_der_M;
 Model Rueda_del_izq_M;
 Model Rueda_del_der_M;
 Model Gancho_Mate_M;
+Model MikeWasawski_M;
+
+//Declaracion para sonido
+ISoundEngine* engine = createIrrKlangDevice();
 
 
 Skybox skybox;
@@ -866,7 +870,15 @@ void inputKeyframes(bool* keys)
 }
 
 ///////////////* FIN KEYFRAMES*////////////////////////////
+void reproducirSonidoEspacial(glm::vec3 posicionJugador, glm::vec3 posicionSonido, float rangoDeteccion) {
+	// Calcula la distancia entre el jugador y la posición del sonido
+	float distancia = glm::distance(posicionJugador, posicionSonido);
 
+	if (distancia <= rangoDeteccion) {
+		// Reproduce el sonido espacial si el jugador está dentro del rango
+		engine->play3D("audio/mike_wazowski.ogg", vec3df(posicionSonido.x, posicionSonido.y, posicionSonido.z));
+	}
+}
 
 
 int main()
@@ -878,7 +890,7 @@ int main()
 	CreateShaders();
 
 	
-	ISoundEngine* engine = createIrrKlangDevice();
+	
 
 	if (!engine)
 		printf("No se pudo cargar el motor de sonido irrklang");
@@ -1012,7 +1024,8 @@ int main()
 	Rueda_del_der_M.LoadModel("Models/rueda_del_der_mate.obj");
 	Gancho_Mate_M = Model();
 	Gancho_Mate_M.LoadModel("Models/gancho_mate.obj");
-
+	MikeWasawski_M = Model();
+	MikeWasawski_M.LoadModel("Models/mike_wasawski.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/miramar_rt.tga");
@@ -1169,6 +1182,10 @@ int main()
 	movTinkerbellOffset = 0.05f;
 	rotTinkerbell = 0.0f;
 	rotTinkerbellOffset = 10.0f;
+	movBingBong = 0.0f;
+	movBingBongOffset = 0.05f;
+	rotBingBong = 0.0f;
+	rotBingBongOffset = 10.0f;
 	movRedCat = 0.0f;
 	movRedCatOffset = 0.05f;
 	rotRedCat = 0.0f;
@@ -1201,6 +1218,18 @@ int main()
 	movCilindroOffset = 0.05f;
 	rotCilindro = 0.0f;
 	rotCilindroOffset = 10.0f;
+	movMcQueen = 0.0f;
+	movMcQueenOffset = 0.05;
+	rotMcQueen = 0.0f;
+	rotMcQueenOffset = 10.0f;
+	movForky = 0.0f;
+	movForkyOffset = 0.05f;
+	rotForky = 0.0f;
+	rotForkyOffset = 10.0f;
+	movNave = 0.0f;
+	movNaveOffset = 0.05f;
+	rotNave = 0.0f;
+	rotNaveOffset = 10.0f;
 	movFantasia = 0.0f;
 	movFantasiaOffset = 0.05f;
 	rotFantasia = 0.0f;
@@ -1209,6 +1238,19 @@ int main()
 	movPelotaOffset = 0.05f;
 	rotPelota = 0.0f;
 	rotPelotaOffset = 10.0f;
+	movUpHouse = 0.0f;
+	movUpHouseOffset = 0.05f;
+	rotUpHouse = 0.0f;
+	rotUpHouseOffset = 10.0f;
+	movAnemona = 0.0f;
+	movAnemonaOffset = 0.05f;
+	rotAnemona = 0.0f;
+	rotAnemonaOffset = 10.0f;
+	movCasaMickey = 0.0f;
+	movCamionetaOffset = 0.05f;
+	rotCasaMickey = 0.0f;
+	rotCasaMickeyOffset = 10.0f;
+
 
 	movDirX = 0.0;
 	movDirY = -1.0f;
@@ -1236,7 +1278,7 @@ int main()
 	int suma = 0;
 	movDumboX = 27.0f;
 	movDumboXOffset = 0.2f;
-	movDumboZ = 35.0f;
+	movDumboZ = 40.0f;
 	movDumboZOffset = 0.5f;
 	rotPataDerechaDumbo = 0.0f;
 	rotDumboOffset = 10.0f;
@@ -1245,7 +1287,7 @@ int main()
 	////Loop mientras no se cierra la ventana
 	printf("\nTeclas para uso de Keyframes:\n1.-Presionar barra espaciadora para reproducir animacion.\n2.-Presionar 0 para volver a habilitar reproduccion de la animacion\n");
 	printf("3.-Presiona L para guardar frame\n4.-Presiona P para habilitar guardar nuevo frame\n5.-Presiona 1 para mover en X\n6.-Presiona 2 para habilitar mover en X");
-	engine->play2D("audio/monsters_inc.mp3", true); //Soundtrack
+	engine->play2D("audio/dumbo_circus.mp3", true); //Soundtrack
 	while (!mainWindow.getShouldClose())
 	{
 		GLfloat now = glfwGetTime();
@@ -1367,7 +1409,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha) * deltaTime;
 				}
-				animaPersonaje(movPiglet, rotPiglet, movPigletOffset, rotPigletOffset, anima,deltaTime);
+				else {
+					animaPersonaje(movPiglet, rotPiglet, movPigletOffset, rotPigletOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 2:
 				if (movDumboX > 12.0f) {
@@ -1375,7 +1420,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movTigger, rotTigger, movTiggerOffset, rotTiggerOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movTigger, rotTigger, movTiggerOffset, rotTiggerOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 3:
 				if (movDumboX > 5.0f) {
@@ -1383,7 +1431,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movPumpkin, rotPumpkin, movPumpkinOffset, rotPumpkinOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movPumpkin, rotPumpkin, movPumpkinOffset, rotPumpkinOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 4:
 				if (movDumboX > -2.0f) {
@@ -1391,7 +1442,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movSingingFlowers, rotSingingFlowers, movSingingFlowersOffset, rotSingingFlowersOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movSingingFlowers, rotSingingFlowers, movSingingFlowersOffset, rotSingingFlowersOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 5:
 				if (movDumboX > -9.0f) {
@@ -1399,7 +1453,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movTree, rotTree, movTreeOffset, rotTreeOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movTree, rotTree, movTreeOffset, rotTreeOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 6:
 				if (movDumboX > -15.5f) {
@@ -1407,7 +1464,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movTiroAlBlanco, rotTiroAlBlanco, movTiroAlBlancoOffset, rotTiroAlBlancoOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movTiroAlBlanco, rotTiroAlBlanco, movTiroAlBlancoOffset, rotTiroAlBlancoOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 7:
 				if (movDumboX > -22.5f) {
@@ -1415,7 +1475,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movChicharos, rotChicharos, movChicharosOffset, rotChicharosOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movChicharos, rotChicharos, movChicharosOffset, rotChicharosOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 8:
 				if (movDumboX > -29.5f) {
@@ -1423,7 +1486,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movSlinky, rotSlinky, movSlinkyOffset, rotSlinkyOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movSlinky, rotSlinky, movSlinkyOffset, rotSlinkyOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 9:
 				if (movDumboX > -36.5f) {
@@ -1431,7 +1497,10 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movFrancesco, rotFrancesco, movFrancescoOffset, rotFrancescoOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movFrancesco, rotFrancesco, movFrancescoOffset, rotFrancescoOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 10:
 				if (movDumboX > -43.5f) {
@@ -1439,368 +1508,517 @@ int main()
 					rotPiernaDerecha += rotPiernaDerechaOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movPinocchio, rotPinocchio, movPinocchioOffset, rotPinocchioOffset, anima, deltaTime);
+				else {
+					animaPersonaje(movPinocchio, rotPinocchio, movPinocchioOffset, rotPinocchioOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 11:
-				if (rotDumbo > -90.0f)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > 29.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > 29.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movMickey, rotMickey, movMickeyOffset, rotMickeyOffset, anima, deltaTime);
 				}
-				animaPersonaje(movMickey, rotMickey, movMickeyOffset, rotMickeyOffset, anima, deltaTime);
+				
 				break;
 			case 12:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > 22.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > 22.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movWinnie, rotWinnie, movWinnieOffset, rotWinnieOffset, anima, deltaTime);
 				}
-				animaPersonaje(movWinnie, rotWinnie, movWinnieOffset, rotWinnieOffset, anima, deltaTime);
+				
 				break;
 			case 13:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > 15.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > 15.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movJam, rotJam, movJamOffset, rotJamOffset, anima, deltaTime);
 				}
-				animaPersonaje(movJam, rotJam, movJamOffset, rotJamOffset, anima, deltaTime);
+				
 				break;
 			case 14:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > 8.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > 8.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movPrincesaAtta, rotPrincesaAtta, movPrincesaAttaOffset, rotPrincesaAttaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movPrincesaAtta, rotPrincesaAtta, movPrincesaAttaOffset, rotPrincesaAttaOffset, anima, deltaTime);
+				
 				break;
 			case 15:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > 1.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > 1.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					
+					
+					animaPersonaje(movWalle, rotWalle, movWalleOffset, rotWalleOffset, anima, deltaTime);
 				}
-				animaPersonaje(movWalle, rotWalle, movWalleOffset, rotWalleOffset, anima, deltaTime);
+				
 				break;
 			case 16:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > -4.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > -4.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movNemo, rotNemo, movNemoOffset, rotNemoOffset, anima, deltaTime);
 				}
-				animaPersonaje(movNemo, rotNemo, movNemoOffset, rotNemoOffset, anima, deltaTime);
+				
 				break;
 			case 17:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > -11.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > -11.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movRalph, rotRalph, movRalphOffset, rotRalphOffset, anima, deltaTime);
 				}
-				animaPersonaje(movRalph, rotRalph, movRalphOffset, rotRalphOffset, anima, deltaTime);
+				
 				break;
 			case 18:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > -18.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > -18.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movTinkerbell, rotTinkerbell, movTinkerbellOffset, rotTinkerbellOffset, anima, deltaTime);
 				}
-				animaPersonaje(movTinkerbell, rotTinkerbell, movTinkerbellOffset, rotTinkerbellOffset, anima, deltaTime);
+				
 				break;
 			case 19:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > -27.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > -27.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movAlegria, rotAlegria, movAlegriaOffset, rotAlegriaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movAlegria, rotAlegria, movAlegriaOffset, rotAlegriaOffset, anima, deltaTime);
+				
 				break;
 			case 20:
 				if (movDumboX > -43.5) {
 					movDumboX -= movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ > -32.0f) {
-					movDumboZ -= movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -90.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ > -32.0f) {
+						movDumboZ -= movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movStich, rotStich, movStichOffset, rotStichOffset, anima, deltaTime);
+					
+					
 				}
-				animaPersonaje(movStich, rotStich, movStichOffset, rotStichOffset, anima, deltaTime);
+				
 				break;
 			case 21:
-				if (rotDumbo > -180.0f)
-					rotDumbo -= rotDumboOffset * deltaTime;
-				if (movDumboX < -36.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
-				}
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				animaPersonaje(movBingBong, rotBingBong, movBingBongOffset, rotBingBongOffset, anima, deltaTime);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -36.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movBingBong, rotBingBong, movBingBongOffset, rotBingBongOffset, anima, deltaTime);
+				}
+				
 				break;
 			case 22:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < -29.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -29.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movRedCat, rotRedCat, movRedCatOffset, rotRedCatOffset, anima, deltaTime);
 				}
-				animaPersonaje(movRedCat, rotRedCat, movRedCatOffset, rotRedCatOffset, anima, deltaTime);
+				
 				break;
 			case 23:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < -22.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -22.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movMegara, rotMegara, movMegaraOffset, rotMegaraOffset, anima, deltaTime);
 				}
-				animaPersonaje(movMegara, rotMegara, movMegaraOffset, rotMegaraOffset, anima, deltaTime);
+				
 				break;
 			case 24:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < -15.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -15.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movMushu, rotMushu, movMushuOffset, rotMushuOffset, anima, deltaTime);
 				}
-				animaPersonaje(movMushu, rotMushu, movMushuOffset, rotMushuOffset, anima, deltaTime);
+				
 				break;
 			case 25:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < -8.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -8.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movMrFlash, rotMrFlash, movMrFlashOffset, rotMrFlashOffset, anima, deltaTime);
 				}
-				animaPersonaje(movMrFlash, rotMrFlash, movMrFlashOffset, rotMrFlashOffset, anima, deltaTime);
+				
 				break;
 			case 26:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < -1.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < -1.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movSimba, rotSimba, movSimbaOffset, rotSimbaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movSimba, rotSimba, movSimbaOffset, rotSimbaOffset, anima, deltaTime);
+				
 				break;
 			case 27:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < 6.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < 6.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movPocahontas, rotPocahontas, movPocahontasOffset, rotPocahontasOffset, anima, deltaTime);
+
 				}
-				animaPersonaje(movPocahontas, rotPocahontas, movPocahontasOffset, rotPocahontasOffset, anima, deltaTime);
+				
 				break;
 			case 28:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < 13.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < 13.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movSully, rotSully, movSullyOffset, rotSullyOffset, anima, deltaTime);
 				}
-				animaPersonaje(movSully, rotSully, movSullyOffset, rotSullyOffset, anima, deltaTime);
+				
 				break;
 			case 29:
 				if (movDumboZ > -32.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < 18.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < 18.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movCamioneta, rotCamioneta, movCamionetaOffset, rotCamionetaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movCamioneta, rotCamioneta, movCamionetaOffset, rotCamionetaOffset, anima, deltaTime);
+				
 				break;
 			case 30:
 				if (movDumboZ > 24.0f) {
 					movDumboZ -= movDumboZOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboX < 26.0f) {
-					movDumboX += movDumboXOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -180.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboX < 26.0f) {
+						movDumboX += movDumboXOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movPepita, rotPepita, movPepitaOffset, rotPepitaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movPepita, rotPepita, movPepitaOffset, rotPepitaOffset, anima, deltaTime);
+				
 				break;
 			case 31:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -26.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -26.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movCilindro, rotCilindro, movCilindroOffset, rotCilindroOffset, anima, deltaTime);
 				}
-				animaPersonaje(movCilindro, rotCilindro, movCilindroOffset, rotCilindroOffset, anima, deltaTime);
+				
+				
 				break;
 			case 32:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -26.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -20.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movMcQueen, rotMcQueen, movMcQueenOffset, rotMcQueenOffset, anima, deltaTime);
 				}
-				animaPersonaje(movMcQueen, rotMcQueen, movMcQueenOffset, rotMcQueenOffset, anima, deltaTime);
+				
 				break;
 			case 33:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -20.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -12.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movForky, rotForky, movForkyOffset, rotForkyOffset, anima, deltaTime);
 				}
-				animaPersonaje(movForky, rotForky, movForkyOffset, rotForkyOffset, anima, deltaTime);
+				
 				break;
 			case 34:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -12.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -5.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movFantasia, rotFantasia, movFantasiaOffset, rotFantasiaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movFantasia, rotFantasia, movFantasiaOffset, rotFantasiaOffset, anima, deltaTime);
+				
 				break;
 			case 35:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -5.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -0.5f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movNave, rotNave, movNaveOffset, rotNaveOffset, anima, deltaTime);
 				}
-				animaPersonaje(movNave, rotNave, movNaveOffset, rotNaveOffset, anima, deltaTime);
+				
 				break;
 			case 36:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < -0.5f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < -10.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movPelota, rotPelota, movPelotaOffset, rotPelotaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movPelota, rotPelota, movPelotaOffset, rotPelotaOffset, anima, deltaTime);
+				
 				break;
 			case 37:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < 10.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < 17.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movUpHouse, rotUpHouse, movUpHouseOffset, rotUpHouseOffset, anima, deltaTime);
 				}
-				animaPersonaje(movUpHouse, rotUpHouse, movUpHouseOffset, rotUpHouseOffset, anima, deltaTime);
+				
 				break;
 			case 38:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < 17.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < 23.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movAnemona, rotAnemona, movAnemonaOffset, rotAnemonaOffset, anima, deltaTime);
 				}
-				animaPersonaje(movAnemona, rotAnemona, movSlinkyOffset, rotSlinkyOffset, anima, deltaTime);
+				
 				break;
 			case 39:
-				if (rotDumbo < -270.0)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				if (movDumboX < 26.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < 23.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo < -270.0)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < 29.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
+					animaPersonaje(movCasaMickey, rotCasaMickey, movCasaMickeyOffset, rotCasaMickeyOffset, anima, deltaTime);
 				}
-				animaPersonaje(movCasaMickey, rotCasaMickey, movCasaMickeyOffset, rotCasaMickeyOffset, anima, deltaTime);
+				
 				break;
 			
 			default:
-				if (rotDumbo > -360.0f)
-					rotDumbo -= rotDumboOffset * deltaTime;
+				
 				
 				if (movDumboX < 27.0f) {
 					movDumboX += movDumboXOffset * deltaTime;
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
-				if (movDumboZ < 35.0f) {
-					movDumboZ += movDumboZOffset * deltaTime;
-					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+				else {
+					if (rotDumbo > -360.0f)
+						rotDumbo -= rotDumboOffset * deltaTime;
+					if (movDumboZ < 35.0f) {
+						movDumboZ += movDumboZOffset * deltaTime;
+						rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
+					}
 				}
+				
 				movDumboX = 27.0f;
-				movDumboZ = 35.0f;
+				movDumboZ = 40.0f;
+				rotDumbo = 0.0f;
+				suma = 0;
 				break;
 				
 			}
 		}
+		
 
 		//dado 8 caras
 		model = glm::mat4(1.0f);
@@ -1846,6 +2064,7 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movDumboX, 1.5f, movDumboZ));
 		pointLights[0].setPosition(model[3]);
+		
 		model = glm::rotate(model, rotDumbo * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
 		modelaux = model;
@@ -2023,6 +2242,8 @@ int main()
 		model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Walle_M.RenderModel();
+
+		
 
 		//Nemo
 		model = glm::mat4(1.0f);
@@ -2246,6 +2467,6 @@ int main()
 
 		mainWindow.swapBuffers();
 	}
-
+	engine->drop();
 	return 0;
 }
