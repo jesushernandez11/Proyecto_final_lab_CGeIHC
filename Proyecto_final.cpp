@@ -1060,6 +1060,7 @@ int main()
 
 	Material_brillante = Material(4.0f, 256);
 	Material_opaco = Material(0.3f, 4);
+	float cambio = 180.0f;
 
 
 	//luz direccional, sólo 1 y siempre debe de existir
@@ -1261,6 +1262,11 @@ int main()
 	movCamionetaOffset = 0.05f;
 	rotCasaMickey = 0.0f;
 	rotCasaMickeyOffset = 10.0f;
+	movMegara = 0.0f;
+	movMegaraOffset = 0.05f;
+	rotMegara = 0.0f;
+	rotMegaraOffset = 10.0f;
+
 
 
 	movDirX = 0.0;
@@ -2024,6 +2030,7 @@ int main()
 				movDumboX = 27.0f;
 				movDumboZ = 40.0f;
 				rotDumbo = 0.0f;
+				cambio = 180.0f;
 				suma = 0;
 				break;
 				
@@ -2075,8 +2082,30 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movDumboX, 1.5f, movDumboZ));
 		pointLights[0].setPosition(model[3]);
-		printf("%i", (int)rotDumbo);
+		//180 = 0
+		//270 = -90
+		//360 = -180
+		//450 = -270
+
+		if (movDumboX > -43.5f && rotDumbo >=0) {
+			camera_follow.setCameraPosition(glm::vec3(5.0f + model[3].x, 2.0f + model[3].y, model[3].z));
+			camera_follow.setYaw(180.0f);
+		}
+		else if (movDumboZ > -32.0f && rotDumbo <=-90.0f&& rotDumbo>=-95.0f) {
+			camera_follow.setCameraPosition(glm::vec3(model[3].x, 2.0f + model[3].y, 5.0f + model[3].z));
+			camera_follow.setYaw(270.0f);
+		}
+		else  if(movDumboX<26.0f && rotDumbo<=-180.0f){
+			camera_follow.setCameraPosition(glm::vec3(-5.0f+model[3].x, 2.0f + model[3].y, +model[3].z));
+			camera_follow.setYaw(360.0f);
+		}
+		else if (movDumboZ < 29.0f && rotDumbo <= -270.0f) {
+			camera_follow.setCameraPosition(glm::vec3( model[3].x, 2.0f + model[3].y, -5.0+model[3].z));
+			camera_follow.setYaw(-270.0f);
+		}
 		
+		
+
 		model = glm::rotate(model, rotDumbo * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
 		modelaux = model;
