@@ -86,7 +86,14 @@ void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
 
 	update();
 }
-
+void Camera::setCameraPosition(glm::vec3 pos) {
+	position = pos;
+	update();
+}
+void Camera::setYaw(float Yaw) {
+	yaw = Yaw;
+	update();
+}
 
 glm::mat4 Camera::calculateViewMatrix()
 {

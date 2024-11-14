@@ -286,7 +286,7 @@ std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
 
 
-Camera camera_follow=Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -60.0f, 0.0f, 0.3f, 0.5f);
+Camera camera_follow=Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -60.0f, -30.0f, 0.3f, 0.5f);
 Camera* camera_selected = &camera_follow;
 Camera cameraXY = Camera(glm::vec3(0.0f, 50.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.0f, -90.0f, 5.0f, 0.3f);
 Camera cameraFixed = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), 0.0f, -45.0f, 5.0f, 0.3f);//Definir posicion correcta
@@ -355,6 +355,10 @@ Model Rueda_del_izq_M;
 Model Rueda_del_der_M;
 Model Gancho_Mate_M;
 Model MikeWasawski_M;
+Model CastilloCenicienta_M;
+Model MGM_Disney;
+Model OwlHouse_M;
+Model Hooty_OwlHouse_M;
 
 //Declaracion para sonido
 ISoundEngine* engine = createIrrKlangDevice();
@@ -1026,7 +1030,14 @@ int main()
 	Gancho_Mate_M.LoadModel("Models/gancho_mate.obj");
 	MikeWasawski_M = Model();
 	MikeWasawski_M.LoadModel("Models/mike_wasawski.obj");
-
+	CastilloCenicienta_M = Model();
+	CastilloCenicienta_M.LoadModel("Models/castillo_cenicienta.obj");
+	MGM_Disney = Model();
+	MGM_Disney.LoadModel("Models/MGM_disney.obj");
+	OwlHouse_M = Model();
+	OwlHouse_M.LoadModel("Models/owl_house.obj");
+	Hooty_OwlHouse_M = Model();
+	Hooty_OwlHouse_M.LoadModel("Models/hooty_owl_house.obj");
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/miramar_rt.tga");
 	skyboxFaces.push_back("Textures/Skybox/miramar_lf.tga");
@@ -1846,7 +1857,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -26.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1864,7 +1875,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -20.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1881,7 +1892,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -12.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1898,7 +1909,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -5.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1915,7 +1926,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -0.5f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1932,7 +1943,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < -10.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1949,7 +1960,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < 17.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1966,7 +1977,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < 23.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -1983,7 +1994,7 @@ int main()
 					rotPataDerechaDumbo = 0.5 * sin(rotPiernaDerecha);
 				}
 				else {
-					if (rotDumbo < -270.0)
+					if (rotDumbo > -270.0)
 						rotDumbo -= rotDumboOffset * deltaTime;
 					if (movDumboZ < 29.0f) {
 						movDumboZ += movDumboZOffset * deltaTime;
@@ -2064,6 +2075,7 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movDumboX, 1.5f, movDumboZ));
 		pointLights[0].setPosition(model[3]);
+		printf("%i", (int)rotDumbo);
 		
 		model = glm::rotate(model, rotDumbo * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
@@ -2463,6 +2475,38 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5, 0.5, 0.5));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		CasaMickey_M.RenderModel();
+
+		//Castillo cenicienta
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(60.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		CastilloCenicienta_M.RenderModel();
+
+		//MGM Estudios Disney
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-110.0f, 2.0f, 0.0f));
+		model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		MGM_Disney.RenderModel();
+
+		//Owl house (La casa del buho)
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, -80.0f));
+		//model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		OwlHouse_M.RenderModel();
+
+		//Hooty (La casa del buho)
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 80.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Hooty_OwlHouse_M.RenderModel();
 		glUseProgram(0);
 
 		mainWindow.swapBuffers();
