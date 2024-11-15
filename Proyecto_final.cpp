@@ -348,13 +348,6 @@ Model Lumiere_M;
 Model PixarLamp_M;
 Model Soul_M;
 Model LampPP_M;
-Model Mate_M;
-Model Rueda_tras_izq_M;
-Model Rueda_tras_der_M;
-Model Rueda_del_izq_M;
-Model Rueda_del_der_M;
-Model Gancho_Mate_M;
-Model MikeWasawski_M;
 Model CastilloCenicienta_M;
 Model MGM_Disney;
 Model OwlHouse_M;
@@ -566,323 +559,6 @@ void animaDados(float deltaTime, float& rotDadoXd8, float& rotDadoYd8, float& ro
 bool animacion = false;
 
 
-//variables para keyframes
-float reproduciranimacion, habilitaranimacion, guardoFrame, reinicioFrame, ciclo, ciclo2, contador = 0;
-//NEW// Keyframes
-float posXmate = 20.0, posYmate = 1.0, posZmate = -55.0;
-float	movMate_x = 0.0f, movMate_z = 0.0f;
-float giroMate = 0;
-float rotLlantaMate = 0.0f;
-float rotGanchoMate = 0.0f;
-
-#define MAX_FRAMES 100
-int i_max_steps = 90;
-int i_curr_steps = 0;
-typedef struct _frame
-{
-	//Variables para GUARDAR Key Frames
-	float movMate_x;		//Variable para PosicionX
-	float movMate_z;		//Variable para PosicionY
-	float movMate_xInc;		//Variable para IncrementoX
-	float movMate_zInc;		//Variable para IncrementoY
-	float giroMate;
-	float giroMateInc;
-	float rotLlantaMate;
-	float rotLlantaMateInc;
-	float rot;
-}FRAME;
-
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
-bool play = false;
-int playIndex = 0;
-std::ofstream file;
-
-std::string archivo = "animacion.txt";
-glm::vec3 posMate;
-
-void saveFrame(void) //tecla L
-{
-
-
-	printf("frameindex %d\n", FrameIndex);
-	file.open(archivo, std::fstream::app); //Para añadir al último del archivo
-	file << "KeyFrame[" << FrameIndex << "].movMate_x=" << movMate_x << std::endl;
-	file << "KeyFrame[" << FrameIndex << "].movMate_z=" << movMate_z << std::endl;
-	file << "KeyFrame[" << FrameIndex << "].giroMate=" << giroMate << std::endl;
-
-	KeyFrame[FrameIndex].movMate_x = movMate_x;
-	KeyFrame[FrameIndex].movMate_z = movMate_z;
-	KeyFrame[FrameIndex].giroMate = giroMate;//completar
-	//no volatil, agregar una forma de escribir a un archivo para guardar los frames
-	FrameIndex++;
-	file.close();
-
-}
-void loadFrame(void) {//tecla k
-	std::ifstream arch(archivo);
-	float movMateX, movMateZ, rotMate;
-	while (arch >> movMateX >> movMateZ >> rotMate) {
-		KeyFrame[FrameIndex].movMate_x = movMateX;
-		KeyFrame[FrameIndex].movMate_z = movMateZ;
-		KeyFrame[FrameIndex].giroMate = rotMate;
-	}
-	std::cout << "KeyFrame[" << FrameIndex << "].movMate_x = " << movMateX<<std::endl;
-	std::cout << "KeyFrame[" << FrameIndex << "].movMate_z = " << movMateX<<std::endl;
-	std::cout << "KeyFrame[" << FrameIndex << "].giroMate = " << movMateX<<std::endl;
-	FrameIndex++;
-	arch.close();
-}
-
-void resetElements(void) //Tecla 0
-{
-
-	movMate_x = KeyFrame[0].movMate_x;
-	movMate_z = KeyFrame[0].movMate_z;
-	giroMate = KeyFrame[0].giroMate;
-}
-
-void interpolation(void)
-{
-	KeyFrame[playIndex].movMate_xInc = (KeyFrame[playIndex + 1].movMate_x - KeyFrame[playIndex].movMate_x) / i_max_steps;
-	KeyFrame[playIndex].movMate_zInc = (KeyFrame[playIndex + 1].movMate_z - KeyFrame[playIndex].movMate_z) / i_max_steps;
-	KeyFrame[playIndex].giroMateInc = (KeyFrame[playIndex + 1].giroMate - KeyFrame[playIndex].giroMate) / i_max_steps;
-
-}
-
-
-void animate(void)
-{
-	//Movimiento del objeto con barra espaciadora
-	if (play)
-	{
-		if (i_curr_steps >= i_max_steps) //fin de animación entre frames?
-		{
-			playIndex++;
-			printf("playindex : %d\n", playIndex);
-			if (playIndex > FrameIndex - 2)	//Fin de toda la animación con último frame?
-			{
-				printf("Frame index= %d\n", FrameIndex);
-				printf("termino la animacion\n");
-				playIndex = 0;
-				play = false;
-			}
-			else //Interpolación del próximo cuadro
-			{
-
-				i_curr_steps = 0; //Resetea contador
-				//Interpolar
-				interpolation();
-			}
-		}
-		else
-		{
-			//Dibujar Animación
-			movMate_x += KeyFrame[playIndex].movMate_xInc;
-			movMate_z += KeyFrame[playIndex].movMate_zInc;
-			giroMate += KeyFrame[playIndex].giroMateInc;
-			i_curr_steps++;
-
-		}
-
-	}
-}
-void inputKeyframes(bool* keys)
-{
-	if (keys[GLFW_KEY_SPACE])
-	{
-		if (reproduciranimacion < 1)
-		{
-			if (play == false && (FrameIndex > 1))
-			{
-				resetElements();
-				//First Interpolation				
-				interpolation();
-				play = true;
-				playIndex = 0;
-				i_curr_steps = 0;
-				reproduciranimacion++;
-				printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
-				habilitaranimacion = 0;
-
-			}
-			else
-			{
-				play = false;
-
-			}
-		}
-	}
-	if (keys[GLFW_KEY_0])
-	{
-		if (habilitaranimacion < 1 && reproduciranimacion>0)
-		{
-			printf("Ya puedes reproducir de nuevo la animación con la tecla de barra espaciadora'\n");
-			reproduciranimacion = 0;
-			habilitaranimacion++;
-
-		}
-	}
-
-	/*if (keys[GLFW_KEY_M])
-	{
-		if (guardoFrame < 1)
-		{
-			saveFrame();
-			printf("movMate_x es: %f\n", movMate_x);
-			printf("movMate_z es: %f\n", movMate_z);
-			printf("giroMate  es: %f\n", giroMate);
-			printf("presiona P para habilitar guardar otro frame'\n");
-			guardoFrame++;
-			reinicioFrame = 0;
-		}
-	}*/
-	if (keys[GLFW_KEY_K]) {
-		if (guardoFrame < 1) {
-			loadFrame();
-			printf("Presiona la tecla espacio para reproducir la animacion\n");
-			guardoFrame++;
-		}
-	}
-	if (keys[GLFW_KEY_P])
-	{
-		if (reinicioFrame < 1)
-		{
-			guardoFrame = 0;
-			reinicioFrame++;
-			printf("Ya puedes guardar otro frame presionando la tecla L'\n");
-		}
-	}
-
-
-	if (keys[GLFW_KEY_1])
-	{
-		if (ciclo < 1)
-		{
-			//printf("movMate_x es: %f\n", movMate_x);
-			movMate_x -= 5.0f;
-			printf("\n movMate_x es: %f\n", movMate_x);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n Presiona la tecla 2 para poder habilitar la variable\n");
-		}
-
-	}
-	if (keys[GLFW_KEY_2])
-	{
-		if (ciclo2 < 1)
-		{
-			ciclo = 0;
-			ciclo2++;
-			printf("\n Ya puedes modificar tu variable presionando la tecla 1\n");
-		}
-	}
-
-	if (keys[GLFW_KEY_3])
-	{
-		if (ciclo < 1)
-		{
-			//printf("movMate_x es: %f\n", movMate_x);
-			movMate_x += 5.0f;
-			printf("\n movMate_x es: %f\n", movMate_x);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n Presiona la tecla 4 para poder habilitar la variable\n");
-		}
-
-	}
-	if (keys[GLFW_KEY_4])
-	{
-		if (ciclo2 < 1)
-		{
-			ciclo = 0;
-			ciclo2++;
-			printf("\n Ya puedes modificar tu variable presionando la tecla 3\n");
-		}
-	}
-
-	if (keys[GLFW_KEY_5])
-	{
-		if (ciclo < 1)
-		{
-			//printf("movMate_x es: %f\n", movMate_x);
-			movMate_z -= 5.0f;
-			printf("\n movMate_z es: %f\n", movMate_z);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n Presiona la tecla 6 para poder habilitar la variable\n");
-		}
-
-	}
-	if (keys[GLFW_KEY_6])
-	{
-		if (ciclo2 < 1)
-		{
-			ciclo = 0;
-			ciclo2++;
-			printf("\n Ya puedes modificar tu variable presionando la tecla 5\n");
-		}
-	}
-
-	if (keys[GLFW_KEY_7])
-	{
-		if (ciclo < 1)
-		{
-			//printf("movMate_x es: %f\n", movMate_x);
-			movMate_z += 5.0f;
-			printf("\n movMate_z es: %f\n", movMate_z);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n Presiona la tecla 8 para poder habilitar la variable\n");
-		}
-
-	}
-	if (keys[GLFW_KEY_8])
-	{
-		if (ciclo2 < 1)
-		{
-			ciclo = 0;
-			ciclo2++;
-			printf("\n Ya puedes modificar tu variable presionando la tecla 7\n");
-		}
-	}
-
-
-	if (keys[GLFW_KEY_9])
-	{
-		if (ciclo < 1)
-		{
-			//printf("movMate_x es: %f\n", movMate_x);
-			giroMate += 90.0f;
-			printf("\n girAvion es: %f\n", giroMate);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n Presiona la tecla Q para poder habilitar la variable\n");
-		}
-
-	}
-	if (keys[GLFW_KEY_Q])
-	{
-		if (ciclo2 < 1)
-		{
-			ciclo = 0;
-			ciclo2++;
-			printf("\n Ya puedes modificar tu variable presionando la tecla 9\n");
-		}
-	}
-
-}
-
-///////////////* FIN KEYFRAMES*////////////////////////////
-void reproducirSonidoEspacial(glm::vec3 posicionJugador, glm::vec3 posicionSonido, float rangoDeteccion) {
-	// Calcula la distancia entre el jugador y la posición del sonido
-	float distancia = glm::distance(posicionJugador, posicionSonido);
-
-	if (distancia <= rangoDeteccion) {
-		// Reproduce el sonido espacial si el jugador está dentro del rango
-		engine->play3D("audio/mike_wazowski.ogg", vec3df(posicionSonido.x, posicionSonido.y, posicionSonido.z));
-	}
-}
 
 
 int main()
@@ -1016,20 +692,6 @@ int main()
 	LampPP_M.LoadModel("Models/lamp_pp.obj");
 	Lumiere_M = Model();
 	Lumiere_M.LoadModel("Models/lumiere.obj");
-	Mate_M = Model();
-	Mate_M.LoadModel("Models/mate.obj");
-	Rueda_tras_izq_M = Model();
-	Rueda_tras_izq_M.LoadModel("Models/rueda_tras_izq_mate.obj");
-	Rueda_tras_der_M = Model();
-	Rueda_tras_der_M.LoadModel("Models/rueda_tras_der_mate.obj");
-	Rueda_del_izq_M = Model();
-	Rueda_del_izq_M.LoadModel("Models/rueda_del_izq_mate.obj");
-	Rueda_del_der_M = Model();
-	Rueda_del_der_M.LoadModel("Models/rueda_del_der_mate.obj");
-	Gancho_Mate_M = Model();
-	Gancho_Mate_M.LoadModel("Models/gancho_mate.obj");
-	MikeWasawski_M = Model();
-	MikeWasawski_M.LoadModel("Models/mike_wasawski.obj");
 	CastilloCenicienta_M = Model();
 	CastilloCenicienta_M.LoadModel("Models/castillo_cenicienta.obj");
 	MGM_Disney = Model();
@@ -1075,25 +737,18 @@ int main()
 		-6.0f, 1.5f, 1.5f,
 		0.3f, 0.2f, 0.1f);
 	pointLightCount++;
-	pointLights[1] = PointLight(1.0f, 1.0f, 1.0f,
-		0.0f, 1.0f,
-		-54.5f, 2.5f, 33.75f,
-		0.3f, 0.2f, 0.1f);
-	pointLightCount++;
-	pointLights[2] = PointLight(0.686, 0.933, 0.933,
+	pointLights[1] = PointLight(0.686, 0.933, 0.933,
 		0.0f, 1.0f,
 		-39.5f, 1.5f, -40.0f,
 		0.3f, 0.2f, 0.1f);
 	pointLightCount++;
-	unsigned int spotLightCount = 0;
-	//linterna
-	spotLights[0] = SpotLight(1.0f, 1.0f, 1.0f,
-		0.0f, 2.0f,
-		0.0f, 0.0f, 0.0f,
-		0.0f, -1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-		5.0f);
-	spotLightCount++;
+	pointLights[2] = PointLight(1.0f, 1.0f, 1.0f,
+		0.0f, 1.0f,
+		-54.5f, 2.5f, 33.75f,
+		0.3f, 0.2f, 0.1f);
+	pointLightCount++;
+	
+
 
 	//luz fija
 	/*spotLights[1] = SpotLight(0.0f, 1.0f, 0.0f,
@@ -1194,6 +849,10 @@ int main()
 	movTinkerbellOffset = 0.05f;
 	rotTinkerbell = 0.0f;
 	rotTinkerbellOffset = 10.0f;
+	movStich = 0.0f;
+	movStichOffset = 0.05f;
+	rotStich = 0.0f;
+	rotStichOffset = 10.0f;
 	movBingBong = 0.0f;
 	movBingBongOffset = 0.05f;
 	rotBingBong = 0.0f;
@@ -1266,6 +925,7 @@ int main()
 	movMegaraOffset = 0.05f;
 	rotMegara = 0.0f;
 	rotMegaraOffset = 10.0f;
+	
 
 
 
@@ -1296,9 +956,11 @@ int main()
 	movDumboX = 27.0f;
 	movDumboXOffset = 0.2f;
 	movDumboZ = 40.0f;
-	movDumboZOffset = 0.5f;
+	movDumboZOffset = 0.2f;
 	rotPataDerechaDumbo = 0.0f;
 	rotDumboOffset = 10.0f;
+	rotCamioneta = 0.0f;
+	rotCamionetaOffset = 10.0f;
 	DireccionMovimiento direccionActual = IZQUIERDA;
 	glfwSetTime(0);
 	////Loop mientras no se cierra la ventana
@@ -1326,10 +988,9 @@ int main()
 		//Recibir eventos del usuario
 		glfwPollEvents();
 		camera_selected->keyControl(mainWindow.getsKeys(), deltaTime, mainWindow.getCambiaCamara());
-		camera_selected->mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
+		//camera_selected->mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 
-		inputKeyframes(mainWindow.getsKeys());
-		animate();
+		
 
 		// Clear the window
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -1351,16 +1012,12 @@ int main()
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera_selected->calculateViewMatrix()));
 		glUniform3f(uniformEyePosition, camera_selected->getCameraPosition().x, camera_selected->getCameraPosition().y, camera_selected->getCameraPosition().z);
 
-		// luz ligada a la cámara de tipo flash
-		//sirve para que en tiempo de ejecución (dentro del while) se cambien propiedades de la luz
-			glm::vec3 lowerLight = camera_selected->getCameraPosition();
-		lowerLight.y -= 0.3f;
-		spotLights[0].SetFlash(lowerLight, camera_selected->getCameraDirection());
+		
 
 		//información al shader de fuentes de iluminación
 		shaderList[0].SetDirectionalLight(&mainLight);
 		shaderList[0].SetPointLights(pointLights, pointLightCount);
-		shaderList[0].SetSpotLights(spotLights, spotLightCount);
+		
 
 		//printf("Before condition: movDirZ=%.2f\n", movDirZ);
 		
@@ -2063,20 +1720,7 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Tablero_M.RenderModel();
 
-		model = glm::mat4(1.0f);
-		posMate = glm::vec3(posXmate + movMate_x, posYmate, posZmate + movMate_z);
-		model = glm::translate(model, posMate);
-		model = glm::rotate(model, giroMate*toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
-		modelAuxMate = model;
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Mate_M.RenderModel();
-
-		model = modelAuxMate;
-		model = glm::rotate(model, rotLlantaMate * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Rueda_del_der_M.RenderModel();
+		
 	
 		//Dumbo
 		model = glm::mat4(1.0f);
@@ -2102,6 +1746,10 @@ int main()
 		else if (movDumboZ < 29.0f && rotDumbo <= -270.0f) {
 			camera_follow.setCameraPosition(glm::vec3( model[3].x, 2.0f + model[3].y, -5.0+model[3].z));
 			camera_follow.setYaw(-270.0f);
+		}
+		else {
+			camera_follow.setCameraPosition(glm::vec3(model[3].x, 2.0f + model[3].y, 5.0f + model[3].z));
+			camera_follow.setYaw(270.0f);
 		}
 		
 		
